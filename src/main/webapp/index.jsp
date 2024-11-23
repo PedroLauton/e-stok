@@ -26,7 +26,7 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
         <li class="nav-item"><a class="nav-link" href="#funcionalidades">Funcionalidades</a></li>
-        <li class="nav-item"><a class="btn btn-outline-success" href="paginas/login.jsp">Acessar</a></li>
+        <li class="nav-item"><a class="btn btn-outline-success" href="login">Acessar</a></li>
       </ul>
     </div>
   </div>

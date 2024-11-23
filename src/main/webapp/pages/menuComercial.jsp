@@ -1,9 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="br.com.estok.entities.Usuario" %>
+<% Usuario usuario = (Usuario) request.getAttribute("Usuario"); %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-Stok - Menu de Administração</title>
+  <title>E-Stok - Menu</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../styles/estilo.css">
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
@@ -35,7 +39,7 @@
   <!-- Menu Principal -->
 <main class="flex-grow-1 d-flex align-items-center justify-content-center">
     <div class="container text-center">
-      <h2 class="mb-4">Menu de Administração</h2> <!-- Título mais para cima, ajustado via CSS -->
+      <h2 class="mb-4">Menu de Administração - <%= usuario.getNome() %></h2> <!-- Título mais para cima, ajustado via CSS -->
       <div class="row d-flex flex-column align-items-center gy-3"> <!-- Alinhamento vertical dos botões -->
         <div class="col-12 col-md-6">
           <a href="cadastrarProduto.html" class="btn btn-form w-100">Cadastrar Produto</a>
