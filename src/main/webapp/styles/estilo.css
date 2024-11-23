@@ -1,0 +1,173 @@
+/* Fonte padrão como Rubik */
+body {
+  font-family: 'Rubik', sans-serif;
+  background-color: #f0f0f0;
+  padding-top: 70px; /* Ajuste conforme a altura da sua navbar para evitar sobreposição */
+}
+
+/* Títulos */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: #333333;
+}
+
+/* Textos gerais */
+p, blockquote, a, li {
+  font-weight: 400;
+  font-family: 'Rubik', sans-serif;
+}
+
+/* Rodapé */
+footer, .footer {
+  background-color: #ffffff;
+  color: #6c757d;
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* Bloco de citação */
+blockquote {
+  font-style: italic;
+  color: #6c757d;
+}
+
+/* Seções específicas */
+#sobre, #acessar {
+  background-color: #f0f0f0;
+}
+
+/* funcionalidades */
+.funcionalidades {
+  background-color: #f0f0f0;
+  padding: 50px 0;
+}
+
+/* Cartões de funcionalidades */
+.funcionalidade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  transition: transform 0.3s ease;
+  height: 100%;
+  min-height: 150px;
+}
+
+.funcionalidade:hover {
+  transform: scale(1.05);
+}
+
+
+.card.funcionalidade {
+  flex: 1;
+}
+
+/* Ícones */
+.img-icone {
+  max-width: 60px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+#funcionalidades .col-12.col-lg-6.align-self-start {
+  margin-top: 180px; /* desci na mão */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  text-align: center;
+  height: 100%;
+}
+
+.funcionalidades .titulo-funcionalidades {
+  font-size: 2.5rem;
+  
+}
+
+/* Cores de destaque */
+.destaque-cor {
+  color: #0de5a8;
+  font-weight: bold;
+}
+
+/* Botão geral */
+.botao, .btn-form, .btn-editar {
+  background-color: #0de5a8;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botao:hover, .btn-form:hover, .btn-editar:hover {
+  background-color: #14c3a2;
+}
+
+/* Tabela de funcionalidades */
+.tabela th {
+  background-color: #14c3a2;
+  color: white;
+}
+
+/* Formulário de login */
+.login-card {
+  max-width: 400px;
+  width: 100%;
+  background-color: #D9D9D9;
+}
+
+/* Carrossel */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-item blockquote {
+  max-width: 600px;
+  margin: 0 auto;
+  word-wrap: break-word;
+  line-height: 1.6;
+}
+
+
+/* Responsividade - Ajuste de Zoom em telas maiores */
+@media (min-width: 992px) {
+  .hero .titulo {
+    font-size: 4.3rem;
+  }
+
+  .hero p.paragrafo {
+    font-size: 1.8rem;
+    line-height: 1.7;
+  }
+
+  .funcionalidades .titulo-funcionalidades {
+    font-size: 2.5rem;
+  }
+}
+
+/* Responsividade - Ajuste de ordem dos elementos em telas menores */
+@media (max-width: 991px) {
+  #funcionalidades .col-12.col-lg-6.align-self-start {
+    order: -1;
+    margin-bottom: 20px;
+  }
+}
