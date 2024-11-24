@@ -21,13 +21,13 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="../index.html">Home</a>
+            <a class="nav-link" href="../index.jsp">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../index.html#sobre">Sobre</a>
+            <a class="nav-link" href="../index.jsp#sobre">Sobre</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../index.html#funcionalidades">Funcionalidades</a>
+            <a class="nav-link" href="../index.jsp#funcionalidades">Funcionalidades</a>
           </li>
         </ul>
       </div>

@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles/estilo.css">
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="img/Untitled_design-removebg-preview.png">
+  <link rel="icon" type="image/png" href="recursos/img/logo-estok.png">
 
 
   <link>
@@ -46,7 +46,7 @@
       </div>
       <!-- Imagem -->
       <div class="col-md-6">
-        <img src="recursos/img/undraw_logistics_x4dc(1).png" alt="Imagem de negócio" class="img-fluid rounded">
+        <img src="recursos/img/imagem-inicial.png" alt="Imagem de negócio" class="img-fluid rounded">
       </div>
     </div>
   </div>
@@ -65,7 +65,7 @@
       </div>
       <!-- Imagem à Direita -->
       <div class="col-md-6">
-        <img src="recursos/img/Untitled_design-removebg-preview.png" alt="Logo" class="img-fluid rounded">
+        <img src="recursos/img/logo-estok.png" alt="Logo" class="img-fluid rounded">
       </div>
     </div>
   </div>
@@ -81,7 +81,7 @@
               <div class="row gx-4 gy-4">
                   <div class="col-12 col-md-6">
                       <div class="card funcionalidade p-4 text-center">
-                          <img src="recursos/img/qr-code(1).png" class="img-icone mb-3">
+                          <img src="recursos/img/qr-code.png" class="img-icone mb-3">
                           <h5>Leitura e Integração por QRCode</h5>
                           <p class="text-muted">Otimize processos com leitura rápida e precisa de produtos utilizando QRCode.</p>
                       </div>  <!-- text muted para deixar mais claro a letra -->
@@ -103,7 +103,7 @@
                   </div>
                   <div class="col-12 col-md-6">
                       <div class="card funcionalidade p-4 text-center">
-                          <img src="recursos/img/nutrition (1).png" alt="Ícone Relatórios Automatizados" class="img-icone mb-3">
+                          <img src="recursos/img/nutricao.png" alt="Ícone Relatórios Automatizados" class="img-icone mb-3">
                           <h5>Insights Nutricionais da Despensa</h5>
                           <p class="text-muted">Permita que seus clientes tenham acesso fácil às informações nutricionais dos produtos armazenados em suas despensas.</p>
 
