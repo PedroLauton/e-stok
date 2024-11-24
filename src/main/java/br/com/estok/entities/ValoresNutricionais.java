@@ -8,17 +8,23 @@ public class ValoresNutricionais {
 	private Double valorEnergetico;
 	private Double carboidratos;
 	private Double proteinas;
-	private Double gorduras;
+	private Double gordurasTotal;
+	private Double gordurasTrans;
+	private Double gordurasSaturadas;
+	private Double vitaminas;
 	private Double porcao;
 	
-	public ValoresNutricionais(Double valorEnergetico, Double carboidratos, Double proteinas, Double gorduras, Double porcao) {
+	public ValoresNutricionais(Double valorEnergetico, Double carboidratos, Double proteinas, Double gordurasTotal,Double gordurasTrans, Double gordurasSaturadas,  Double vitaminas, Double porcao) {
 		this.valorEnergetico = valorEnergetico;
 		this.carboidratos = carboidratos;
 		this.proteinas = proteinas;
-		this.gorduras = gorduras;
+		this.gordurasTotal = gordurasTotal;
+		this.gordurasTrans = gordurasTrans;
+		this.gordurasSaturadas = gordurasSaturadas;
+		this.vitaminas = vitaminas;
 		this.porcao = porcao;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -51,14 +57,38 @@ public class ValoresNutricionais {
 		this.proteinas = proteinas;
 	}
 	
-	public Double getGorduras() {
-		return gorduras;
+	public Double getGordurasTotal() {
+		return gordurasTotal;
+	}
+
+	public void setGordurasTotal(Double gordurasTotal) {
+		this.gordurasTotal = gordurasTotal;
+	}
+
+	public Double getGordurasTrans() {
+		return gordurasTrans;
+	}
+
+	public void setGordurasTrans(Double gordurasTrans) {
+		this.gordurasTrans = gordurasTrans;
+	}
+
+	public Double getGordurasSaturadas() {
+		return gordurasSaturadas;
+	}
+
+	public void setGordurasSaturadas(Double gordurasSaturadas) {
+		this.gordurasSaturadas = gordurasSaturadas;
 	}
 	
-	public void setGorduras(Double gorduras) {
-		this.gorduras = gorduras;
+	public Double getVitaminas() {
+		return vitaminas;
 	}
-	
+
+	public void setVitaminas(Double vitaminas) {
+		this.vitaminas = vitaminas;
+	}
+
 	public Double getPorcao() {
 		return porcao;
 	}

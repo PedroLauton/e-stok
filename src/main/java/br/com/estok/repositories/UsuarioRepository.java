@@ -33,7 +33,7 @@ public class UsuarioRepository {
 			throw new DbException(e.getMessage());
 		} 
 	}
-	
+
 	public Usuario autenticacao(Usuario user) {
 		try {
 			PreparedStatement pst = conn.prepareStatement("SELECT * FROM "
@@ -69,5 +69,4 @@ public class UsuarioRepository {
 			throw new DbException(e.getMessage());
 		}
 	}
-	
 }

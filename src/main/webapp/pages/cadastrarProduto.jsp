@@ -31,79 +31,87 @@
     <!-- Formulário de Produto -->
     <main class="container py-5 flex-grow-1">
         <h2 class="mb-4 text-center">Cadastrar Produtos</h2>
-        <form>
+        <form action="../produto" method="POST">
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="nome" class="form-label">Nome do Produto</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Digite o nome do produto">
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do produto">
                 </div>
                 <div class="col-md-6">
                     <label for="foto" class="form-label">Foto do Produto</label>
-                    <input type="file" class="form-control" id="foto">
+                    <input type="text" class="form-control" id="foto" name="foto">
                 </div>
             </div>
             
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="categoriaProduto" class="form-label">Categoria do Produto</label>
-                    <select class="form-select" id="categoriaProduto">
+                    <select class="form-select" id="categoriaProduto" name="categoriaProduto">
                         <option selected>Escolha uma categoria...</option>
-                        <option value="1">Cereais</option>
-                        <option value="2">Farinhas</option>
-                        <option value="3">Massas</option>
-                        <option value="4">Leguminosas</option>
-                        <option value="5">Carnes</option>
-                        <option value="6">Aves</option>
-                        <option value="7">Pescados</option>
-                        <option value="8">Frutas</option>
-                        <option value="9">Hortaliças</option>
-                        <option value="10">Laticínios</option>
-                        <option value="11">Bebidas</option>
-                        <option value="12">Ovos</option>
-                        <option value="13">Doces</option>
-                        <option value="14">Snacks</option>
-                        <option value="15">Óleos</option>
-                        <option value="16">Temperos</option>
-                        <option value="17">Açucares</option>
-                        <option value="18">Bebidas</option>
-                        <option value="19">Congelados</option>
-                        <option value="20">Naturais</option>
+                        <option value="Cereais">Cereais</option>
+                        <option value="Farinhas">Farinhas</option>
+                        <option value="Massas">Massas</option>
+                        <option value="Leguminosas">Leguminosas</option>
+                        <option value="Carnes">Carnes</option>
+                        <option value="Aves">Aves</option>
+                        <option value="Pescados">Pescados</option>
+                        <option value="Frutas">Frutas</option>
+                        <option value="Hortaliças">Hortaliças</option>
+                        <option value="Laticínios">Laticínios</option>
+                        <option value="Bebidas">Bebidas</option>
+                        <option value="Ovos">Ovos</option>
+                        <option value="Doces">Doces</option>
+                        <option value="Snacks">Snacks</option>
+                        <option value="Óleos">Óleos</option>
+                        <option value="Temperos">Temperos</option>
+                        <option value="Açucares">Açucares</option>
+                        <option value="Bebidas">Bebidas</option>
+                        <option value="Congelados">Congelados</option>
+                        <option value="Naturais">Naturais</option>
 
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label for="fabricante" class="form-label">Fabricante</label>
-                    <input type="text" class="form-control" id="fabricante" placeholder="Digite o nome do fabricante">
+                    <input type="text" class="form-control" id="fabricante" name="fabricante" placeholder="Digite o nome do fabricante" required>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="valorEnergetico" class="form-label">Valor Energético (kcal)</label>
-                    <input type="number" step="0.01" class="form-control" id="valorEnergetico" placeholder="Ex: 100">
+                    <input type="number" step="0.01" class="form-control" id="valorEnergetico" name="valorEnergetico" placeholder="Ex: 100">
                 </div>
                 <div class="col-md-4">
                     <label for="carboidratos" class="form-label">Carboidratos (g)</label>
-                    <input type="number" step="0.01" class="form-control" id="carboidratos" placeholder="Ex: 20">
+                    <input type="number" step="0.01" class="form-control" id="carboidratos" name="carboidratos" placeholder="Ex: 20">
                 </div>
                 <div class="col-md-4">
                     <label for="proteinas" class="form-label">Poteínas (g)</label>
-                    <input type="number" step="0.01" class="form-control" id="proteinas" placeholder="Ex: 5">
+                    <input type="number" step="0.01" class="form-control" id="proteinas" name="proteinas" placeholder="Ex: 5">
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col-md-4">
-                    <label for="gorduras" class="form-label">Gorduras (g)</label>
-                    <input type="number" step="0.01" class="form-control" id="gorduras" placeholder="Ex: 10">
+                    <label for="gordurasTotal" class="form-label">Gorduras Totais(g)</label>
+                    <input type="number" step="0.01" class="form-control" id="gordurasTotal" name="gordurasTotal"placeholder="Ex: 10">
+                </div>
+                <div class="col-md-4">
+                    <label for="gordurasTrans" class="form-label">Gorduras Trans(g)</label>
+                    <input type="number" step="0.01" class="form-control" id="gordurasTrans" name="gordurasTrans"placeholder="Ex: 10">
+                </div>
+                <div class="col-md-4">
+                    <label for="gordurasSaturadas" class="form-label">Gorduras Saturadas(g)</label>
+                    <input type="number" step="0.01" class="form-control" id="gordurasSaturadas" name="gordurasSaturadas"placeholder="Ex: 10">
                 </div>
                 <div class="col-md-4">
                     <label for="vitaminas" class="form-label">Vitaminas (?)</label>
-                    <input type="number" step="0.01" class="form-control" id="vitaminas" placeholder="Ex: 15">
+                    <input type="number" step="0.01" class="form-control" id="vitaminas" name="vitaminas"placeholder="Ex: 15">
                 </div>
                 <div class="col-md-4">
                     <label for="porcao" class="form-label">Porção (g/ml)</label>
-                    <input type="number" step="0.01" class="form-control" id="porcao" placeholder="Ex: 200">
+                    <input type="number" step="0.01" class="form-control" id="porcao" name="porcao"placeholder="Ex: 200">
                 </div>
             </div>
 

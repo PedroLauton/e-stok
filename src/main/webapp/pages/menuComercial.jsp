@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="br.com.estok.entities.Usuario" %>
-<% Usuario usuario = (Usuario) request.getAttribute("Usuario"); %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -39,19 +37,19 @@
   <!-- Menu Principal -->
 <main class="flex-grow-1 d-flex align-items-center justify-content-center">
     <div class="container text-center">
-      <h2 class="mb-4">Menu de Administração - <%= usuario.getNome() %></h2> <!-- Título mais para cima, ajustado via CSS -->
+      <h2 class="mb-4">Menu de Administração</h2> <!-- Título mais para cima, ajustado via CSS -->
       <div class="row d-flex flex-column align-items-center gy-3"> <!-- Alinhamento vertical dos botões -->
         <div class="col-12 col-md-6">
-          <a href="cadastrarProduto.html" class="btn btn-form w-100">Cadastrar Produto</a>
+          <a href="cadastrarProduto.jsp" class="btn btn-form w-100">Cadastrar Produto</a>
         </div>
         <div class="col-12 col-md-6">
-          <a href="cadastrarLote.html" class="btn btn-form w-100">Cadastrar Lote</a>
+          <a href="cadastrarLote.jsp" class="btn btn-form w-100">Cadastrar Lote</a>
         </div>
         <div class="col-12 col-md-6">
-          <a href="listarProduto.html" class="btn btn-form w-100">Listar Produtos</a>
+          <a href="consultarProduto.jsp" class="btn btn-form w-100">Listar Produtos</a>
         </div>
         <div class="col-12 col-md-6">
-          <a href="listarLote.html" class="btn btn-form w-100">Listar Lotes</a>
+          <a href="consultarLote.jsp" class="btn btn-form w-100">Listar Lotes</a>
         </div>
       </div>
     </div>

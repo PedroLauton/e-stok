@@ -24,6 +24,11 @@ public class Usuario {
 		this.tipoUsuario = tipoUsuario;
 	}
 	
+	public Usuario(String login, String senha) {
+		this.login = login;
+		this.senha = senha;
+	}
+	
 	public Long getId() {
 		return id;
 	}
