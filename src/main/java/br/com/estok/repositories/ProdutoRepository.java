@@ -11,8 +11,8 @@ import java.util.List;
 import br.com.estok.entities.Produto;
 import br.com.estok.entities.ValoresNutricionais;
 import br.com.estok.entities.enums.CategoriaProduto;
+import br.com.estok.exception.DbException;
 import br.com.estok.repositories.connection.DbConexao;
-import br.com.estok.repositories.exception.DbException;
 
 public class ProdutoRepository {
 
@@ -22,7 +22,7 @@ public class ProdutoRepository {
 		this.conn = conn;
 	}
 	
-	public void inserirProduto(Produto produto) {
+	public void inserirProduto(Produto produto) throws DbException {
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		try {
@@ -43,20 +43,20 @@ public class ProdutoRepository {
 				}
 			}
 		} catch (SQLException e) {
-			throw new DbException(e.getMessage());
+			throw new DbException("Erro ao inserir o produto. Contacte o Administrador do E-stok.");
 		} finally {
 			DbConexao.fecharResultSet(rs);
 			DbConexao.fecharStatement(pst);
 		}
 	}
 	
-	public void inserirValoresNutricionaisProduto(ValoresNutricionais valoresNutricionais, Produto produto) {
+	public void inserirValoresNutricionaisProduto(ValoresNutricionais valoresNutricionais, Produto produto) throws DbException {
 		PreparedStatement pst = null;
 		try {
 			pst = conn.prepareStatement("INSERT INTO tb_valores_nutricionais(produto_id, "
 					+ "valor_energetico, porcao, carboidratos, proteinas, gorduras_trans, "
 					+ "gorduras_saturadas, gorduras_total, vitaminas)"
-					+ "VALUES (?,?,?,?,?,?,?,?, ?)");
+					+ "VALUES (?,?,?,?,?,?,?,?,?)");
 			
 			pst.setLong(1, produto.getId());
 			pst.setDouble(2, valoresNutricionais.getValorEnergetico());
@@ -70,11 +70,13 @@ public class ProdutoRepository {
 
 			pst.executeUpdate();
 		} catch (SQLException e) {
-			throw new DbException(e.getMessage());
+			throw new DbException("Erro ao inserir o produto. Contacte o Administrador do E-stok.");
+		} finally {
+			DbConexao.fecharStatement(pst);
 		}
 	}
 	
-	public List<Produto> listarTodosProdutos() {
+	public List<Produto> listarTodosProdutos() throws DbException {
 		PreparedStatement pst = null;
 		ResultSet rs =  null;
 		List<Produto> listaProdutos = new ArrayList<>();
@@ -91,7 +93,7 @@ public class ProdutoRepository {
 			}
 			return listaProdutos;
 		} catch (SQLException e) {
-			throw new DbException(e.getMessage());
+			throw new DbException("Erro ao inserir o produto. Contacte o Administrador do E-stok.");
 		} finally {
 			DbConexao.fecharResultSet(rs);
 			DbConexao.fecharStatement(pst);

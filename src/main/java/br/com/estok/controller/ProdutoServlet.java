@@ -2,8 +2,15 @@ package br.com.estok.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import com.google.gson.Gson;
 
 import br.com.estok.entities.Produto;
+import br.com.estok.entities.DTO.ProdutoDTO;
+import br.com.estok.entities.DTO.ValoresNutricionaisDTO;
+import br.com.estok.exception.DbException;
+import br.com.estok.exception.ValidationErrorDTO;
 import br.com.estok.factory.ControllerFactory;
 import br.com.estok.service.ProdutoService;
 import jakarta.servlet.RequestDispatcher;
@@ -24,14 +31,36 @@ public class ProdutoServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Busca todos os produtos
 		List<Produto> produtos = produtoService.listarTodosProdutos();
+		//Encaminha para o front-end
 		request.setAttribute("Produtos", produtos);
 		RequestDispatcher rd  = request.getRequestDispatcher("pages/consultarProduto.jsp");
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		produtoService.inserirProduto(request, response);
+        //Lê os dados JSON enviados no corpo da requisição
+		String json = request.getReader().lines().collect(Collectors.joining());
+        Gson gson = new Gson(); 
+        //Dados Json convertidos para as classes DTO.
+        ProdutoDTO produtoDTO = gson.fromJson(json, ProdutoDTO.class);
+        ValoresNutricionaisDTO valoresNutricionaisDTO = gson.fromJson(json, ValoresNutricionaisDTO.class);
+                
+		try {
+			produtoService.inserirProduto(produtoDTO, valoresNutricionaisDTO);
+		    response.setStatus(HttpServletResponse.SC_OK);
+			response.getWriter().write("Produto cadastrado com sucesso!");		
+		} catch (DbException e) {
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.getWriter().write(e.getMessage());		
+		} catch (ValidationErrorDTO e) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write(e.getMessage());	
+		} catch(NullPointerException e) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write("Erro ao enviar os dados. Tente novamente.");	
+		}
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

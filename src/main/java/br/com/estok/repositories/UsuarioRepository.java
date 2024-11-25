@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import br.com.estok.entities.Usuario;
 import br.com.estok.entities.enums.TipoUsuario;
-import br.com.estok.repositories.exception.DbException;
+import br.com.estok.exception.DbException;
 
 public class UsuarioRepository {
 	
@@ -17,7 +17,7 @@ public class UsuarioRepository {
 		this.conn = conn;
 	}
 
-	public void inserirUsuario(Usuario user) {
+	public void inserirUsuario(Usuario user) throws DbException {
 		try {
 			PreparedStatement pst = conn.prepareStatement("INSERT INTO "
 					+ "tb_usuario(nome, login, senha, tipo_usuario) "
@@ -30,11 +30,11 @@ public class UsuarioRepository {
 			
 			pst.executeUpdate();
 		} catch (SQLException e) {
-			throw new DbException(e.getMessage());
+			throw new DbException("Erro ao inserir o usuário. Verifique as credenciais e conexão com o banco.");
 		} 
 	}
 
-	public Usuario autenticacao(Usuario user) {
+	public Usuario autenticacao(Usuario user) throws DbException {
 		try {
 			PreparedStatement pst = conn.prepareStatement("SELECT * FROM "
 					+ "tb_usuario WHERE login = ? and senha = ?");
@@ -56,17 +56,17 @@ public class UsuarioRepository {
 			
 			return usuarioAutenticado;
 		} catch (SQLException e) {
-			throw new DbException(e.getMessage());
+			throw new DbException("Erro ao realizar a autenticação. Contacte o Administrador do E-stok.");
 		} 
 	}
 	
-	private TipoUsuario cargoUsuario(ResultSet rs) {
+	private TipoUsuario cargoUsuario(ResultSet rs) throws DbException {
 		try {
 			String dado = rs.getString("tipo_usuario");
 			TipoUsuario tipoUsuario = TipoUsuario.valueOf(dado);
 			return tipoUsuario;
 		} catch (SQLException e) {
-			throw new DbException(e.getMessage());
+			throw new DbException("Erro ao realizar a autenticação. Contacte o Administrador do E-stok.");
 		}
 	}
 }

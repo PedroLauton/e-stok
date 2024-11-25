@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import br.com.estok.repositories.exception.DbException;
+import br.com.estok.exception.DbException;
 
 public class DbConexao {
 	
@@ -24,9 +24,9 @@ public class DbConexao {
 				Class.forName(driver);
 				conn = DriverManager.getConnection(url, usuario, senha);	
 			} catch (SQLException e) {
-				throw new DbException(e.getMessage());
+				throw new DbException("Erro ao conectar no banco de dados. Verifique as credenciais e a conexão.");
 			} catch (ClassNotFoundException e) {
-				throw new DbException(e.getMessage());
+				throw new DbException("Erro ao encontrar o driver. Verifique as credenciais.");
 			} 
 		}
 		return conn;
@@ -37,7 +37,7 @@ public class DbConexao {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				throw new DbException(e.getMessage());
+				throw new DbException("Erro ao fechar a conexão com o banco.");
 			}
 		}
 	}
@@ -47,7 +47,7 @@ public class DbConexao {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				throw new DbException("Erro no fechamento do resultSet"); 
+				throw new DbException("Erro no fechamento do resultSet."); 
 			}
 		}
 	}
@@ -57,7 +57,7 @@ public class DbConexao {
 			try {
 				st.close();
 			} catch (SQLException e) {
-				throw new DbException("Erro no fechamento do resultSet"); 
+				throw new DbException("Erro no fechamento do Statement."); 
 			}
 		}
 	}

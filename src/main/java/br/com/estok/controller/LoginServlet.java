@@ -7,6 +7,8 @@ import com.google.gson.Gson;
 
 import br.com.estok.entities.Usuario;
 import br.com.estok.entities.DTO.LoginDTO;
+import br.com.estok.exception.AuthenticationException;
+import br.com.estok.exception.DbException;
 import br.com.estok.factory.ControllerFactory;
 import br.com.estok.service.LoginService;
 import jakarta.servlet.ServletException;
@@ -40,20 +42,24 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Lê os dados JSON enviados no corpo da requisição
         String json = request.getReader().lines().collect(Collectors.joining());
-        Gson gson = new Gson(); // Use a biblioteca Gson ou similar para processar JSON
+        Gson gson = new Gson(); 
         LoginDTO loginDTO = gson.fromJson(json, LoginDTO.class);
-
-        //Usuário autenticado
-        Usuario usuarioAutenticado = loginService.autenticacaoUsuario(loginDTO.getLogin(), loginDTO.getSenha());
-
-        if (usuarioAutenticado != null) {
-            //Se autenticado, inicia sessão e retorna sucesso
+        
+		try {
+	        //Usuário autenticado
+	        Usuario usuarioAutenticado = loginService.autenticacaoUsuario(loginDTO);
+			//Se autenticado, inicia sessão e retorna sucesso
             HttpSession sessao = request.getSession();
             sessao.setAttribute("Usuario", usuarioAutenticado);
             response.setStatus(HttpServletResponse.SC_OK);
-        } else {
-            //Caso contrário, retorna erro
+		} catch (DbException e) {
+			//Caso ocorra um erro no banco de dado. 
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.getWriter().write(e.getMessage());
+		} catch (AuthenticationException e) {
+			 //Caso o usuário informado não seja encontrado. 
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        }
+			response.getWriter().write(e.getMessage());
+		} 	
     }
 }

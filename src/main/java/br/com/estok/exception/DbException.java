@@ -1,4 +1,4 @@
-package br.com.estok.repositories.exception;
+package br.com.estok.exception;
 
 public class DbException extends RuntimeException{
 
@@ -6,5 +6,9 @@ public class DbException extends RuntimeException{
 
 	public DbException(String mensagem) {
 		super(mensagem);
+	}
+	
+	public DbException(String mensagem, Throwable cause) {
+		super(mensagem, cause);
 	}
 }

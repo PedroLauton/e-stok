@@ -30,8 +30,11 @@
 
     <!-- Formulário de Produto -->
     <main class="container py-5 flex-grow-1">
+    	<!-- Alerta -->
+	    <div id="alerta" class="alert alert-danger position-static w-80 text-center d-none" style="top: -20px; z-index: 1050;">
+	    </div>
         <h2 class="mb-4 text-center">Cadastrar Produtos</h2>
-        <form action="../produto" method="POST">
+        <form id="formProduto">
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="nome" class="form-label">Nome do Produto</label>
@@ -48,27 +51,26 @@
                     <label for="categoriaProduto" class="form-label">Categoria do Produto</label>
                     <select class="form-select" id="categoriaProduto" name="categoriaProduto">
                         <option selected>Escolha uma categoria...</option>
-                        <option value="Cereais">Cereais</option>
-                        <option value="Farinhas">Farinhas</option>
-                        <option value="Massas">Massas</option>
-                        <option value="Leguminosas">Leguminosas</option>
-                        <option value="Carnes">Carnes</option>
-                        <option value="Aves">Aves</option>
-                        <option value="Pescados">Pescados</option>
-                        <option value="Frutas">Frutas</option>
-                        <option value="Hortaliças">Hortaliças</option>
-                        <option value="Laticínios">Laticínios</option>
-                        <option value="Bebidas">Bebidas</option>
-                        <option value="Ovos">Ovos</option>
-                        <option value="Doces">Doces</option>
-                        <option value="Snacks">Snacks</option>
-                        <option value="Óleos">Óleos</option>
-                        <option value="Temperos">Temperos</option>
-                        <option value="Açucares">Açucares</option>
-                        <option value="Bebidas">Bebidas</option>
-                        <option value="Congelados">Congelados</option>
-                        <option value="Naturais">Naturais</option>
-
+                        <option value="CEREAIS">Cereais</option>
+                        <option value="FARINHAS">Farinhas</option>
+                        <option value="MASSAS">Massas</option>
+                        <option value="LEGUMINOSAS">Leguminosas</option>
+                        <option value="CARNES">Carnes</option>
+                        <option value="AVES">Aves</option>
+                        <option value="PESCADOS">Pescados</option>
+                        <option value="FRUTAS">Frutas</option>
+                        <option value="HORTALICAS">Hortaliças</option>
+                        <option value="LATICINIOS">Laticínios</option>
+                        <option value="BEBIDAS">Bebidas</option>
+                        <option value="OVOS">Ovos</option>
+                        <option value="DOCES">Doces</option>
+                        <option value="SNACKS">Snacks</option>
+                        <option value="OLEOS">Óleos</option>
+                        <option value="TEMPEROS">Temperos</option>
+                        <option value="ACUCARES">Açucares</option>
+                        <option value="BEBIDAS">Bebidas</option>
+                        <option value="CONGELADOS">Congelados</option>
+                        <option value="NATURAIS">Naturais</option>
                     </select>
                 </div>
                 <div class="col-md-6">
@@ -127,5 +129,56 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+	    document.querySelector("#formProduto").addEventListener("submit", function (event) {
+	        event.preventDefault(); // Previne o envio padrão do formulário
+	
+	        // Capturar os dados do formulário
+	        const formData = new FormData(this);
+	        const data = {};
+	        formData.forEach((value, key) => {
+	            data[key] = value; // Cria um objeto com os dados do formulário
+	        });
+	
+	        // Fazer a requisição AJAX
+	        fetch("../produto", {
+	            method: "POST",
+	            headers: {
+	                "Content-Type": "application/json", // Envia como JSON
+	            },
+	            body: JSON.stringify(data),
+	        })
+	            .then((response) => {
+	                if (response.ok) {
+	                    // Trata como texto (mensagem de sucesso enviada pelo backend)
+	                    return response.text();
+	                } else {
+	                    // Trata como texto (mensagem de erro enviada pelo backend)
+	                    return response.text().then((errorMessage) => {
+	                        throw new Error(errorMessage);
+	                    });
+	                }
+	            })
+	            .then((message) => {
+	                // Exibe o alerta de sucesso
+	                const alerta = document.querySelector("#alerta");
+	                alerta.classList.remove("d-none", "alert-danger");
+	                alerta.classList.add("alert-success");
+	                alerta.textContent = message;
+	
+	                // Redireciona após 3 segundos
+	                setTimeout(() => {
+	                    window.location.href = "../produto";
+	                }, 3000);
+	            })
+	            .catch((error) => {
+	                // Exibe o alerta de erro com a mensagem recebida
+	                const alerta = document.querySelector("#alerta");
+	                alerta.classList.remove("d-none", "alert-success");
+	                alerta.classList.add("alert-danger");
+	                alerta.textContent = error.message;
+	            });
+	    });
+	</script>
 </body>
 </html>

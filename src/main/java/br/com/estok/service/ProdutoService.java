@@ -4,54 +4,56 @@ import java.util.List;
 
 import br.com.estok.entities.Produto;
 import br.com.estok.entities.ValoresNutricionais;
-import br.com.estok.entities.enums.CategoriaProduto;
+import br.com.estok.entities.DTO.ProdutoDTO;
+import br.com.estok.entities.DTO.ValoresNutricionaisDTO;
+import br.com.estok.exception.DbException;
+import br.com.estok.exception.ValidationErrorDTO;
 import br.com.estok.factory.ServiceFactory;
 import br.com.estok.repositories.ProdutoRepository;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 public class ProdutoService {
 
 private ProdutoRepository produtoRepository = ServiceFactory.criarProdutooRepository();
 	
-	public void inserirProduto(HttpServletRequest request, HttpServletResponse response) {
-		Produto produtoInserir = instanciarProduto(request);
+	public void inserirProduto(ProdutoDTO produtoDTO, ValoresNutricionaisDTO valoresNutricionaisDTO) throws DbException, ValidationErrorDTO {
+		//Verifica se os DTOs estão instanciados.
+		if (produtoDTO == null || valoresNutricionaisDTO == null) {
+			throw new ValidationErrorDTO("Inconsistência nos dados. Tente reenviar o formulário.");
+		}
+		
+		// Instanciar a entidade produto.
+		Produto produtoInserir = instanciarProduto(produtoDTO);
+		// Inserir produto no banco de dados, retornando o ID para inserir os valores nutricionais.
 		produtoRepository.inserirProduto(produtoInserir);
-		ValoresNutricionais valoresNutricionais = instanciarValoresNutricionais(request);
-		produtoRepository.inserirValoresNutricionaisProduto(valoresNutricionais, produtoInserir);
+		// Instanciando e inserindo os valores nutricionais.
+		ValoresNutricionais valoresNutricionaisInserir = instanciarValoresNutricionais(valoresNutricionaisDTO);
+		produtoRepository.inserirValoresNutricionaisProduto(valoresNutricionaisInserir, produtoInserir);
 	}
 	
-	public List<Produto> listarTodosProdutos(){
+	public List<Produto> listarTodosProdutos() throws DbException{
 		return produtoRepository.listarTodosProdutos();
 	}
-
-	private Produto instanciarProduto(HttpServletRequest request) {
-		String nome = request.getParameter("nome");
-		String foto = request.getParameter("foto");
-		CategoriaProduto categoria = CategoriaProduto.valueOf(request.getParameter("categoriaProduto").toUpperCase());
-		String fabricante = request.getParameter("fabricante");
-
-		Produto produtoInserir = new Produto(nome, foto, categoria, fabricante);
+	
+	private Produto instanciarProduto(ProdutoDTO produtoDTO) {
+		Produto produtoInserir = new Produto(produtoDTO.getNome(),
+				produtoDTO.getFoto(), 
+				produtoDTO.getCategoriaProduto(),
+				produtoDTO.getFabricante());
+		
 		return produtoInserir;
 	}
 	
-	private ValoresNutricionais instanciarValoresNutricionais(HttpServletRequest request) {
-		try{
-			Double valorEnergetico = Double.parseDouble(request.getParameter("valorEnergetico"));
-			Double carboidratos = Double.parseDouble(request.getParameter("carboidratos"));
-			Double proteinas = Double.parseDouble(request.getParameter("proteinas"));
-			Double gordurasTotal = Double.parseDouble(request.getParameter("gordurasTotal"));
-			Double gordurasTrans = Double.parseDouble(request.getParameter("gordurasTrans"));
-			Double gordurasSaturadas = Double.parseDouble(request.getParameter("gordurasSaturadas"));
-			Double vitaminas = Double.parseDouble(request.getParameter("vitaminas"));
-			Double porcao = Double.parseDouble(request.getParameter("porcao"));
-			
-			ValoresNutricionais valoresNutricionais = new ValoresNutricionais(valorEnergetico, carboidratos, proteinas, gordurasTotal, gordurasTrans, gordurasSaturadas, vitaminas, porcao);
-			return valoresNutricionais;
-		} catch (NumberFormatException e) {
-		    e.printStackTrace();
-		}
-		return null;
-	}
-	
+	private ValoresNutricionais instanciarValoresNutricionais(ValoresNutricionaisDTO valoresNutricionaisDTO) {
+		ValoresNutricionais valoresNutricionais = new ValoresNutricionais(
+				valoresNutricionaisDTO.getValorEnergetico(),
+				valoresNutricionaisDTO.getCarboidratos(),
+				valoresNutricionaisDTO.getProteinas(),
+				valoresNutricionaisDTO.getGordurasTotal(),
+				valoresNutricionaisDTO.getGordurasTrans(),
+				valoresNutricionaisDTO.getGordurasSaturadas(),
+				valoresNutricionaisDTO.getVitaminas(),
+				valoresNutricionaisDTO.getPorcao());
+		
+		return valoresNutricionais;
+	} 
 }

@@ -39,7 +39,6 @@
 	<main class="flex-grow-1 d-flex align-items-center justify-content-center position-relative">
 	    <!-- Alerta -->
 	    <div id="alerta" class="alert alert-danger position-absolute w-90 text-center d-none" style="top: 80px; z-index: 1050;">
-	        Login ou Senha incorretos. Tente novamente.
 	    </div>
 	
 	    <!-- Card de Login -->
@@ -65,45 +64,38 @@
 	</footer>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
-	    document.getElementById('loginForm').addEventListener('submit', function (event) {
-	        event.preventDefault(); // Impede o envio tradicional do formulário
+		document.getElementById('loginForm').addEventListener('submit', function (event) {
+		    event.preventDefault();
 	
-	        // Captura os valores do formulário
-	        const login = document.getElementById('login').value;
-	        const senha = document.getElementById('senha').value;
+		    const login = document.getElementById('login').value;
+		    const senha = document.getElementById('senha').value;
 	
-	        // Faz a requisição AJAX com JSON válido
-	        fetch('../login', {
-	            method: 'POST',
-	            headers: { 'Content-Type': 'application/json' },
-	            body: JSON.stringify({
-	                login: login,
-	                senha: senha
-	            })
-	        })
-	        .then(response => {
-	            console.log(response); // Verifica a resposta da requisição
-	
-	            if (response.ok) {
-	                // Redireciona para a página principal em caso de sucesso
-	                window.location.href = 'menuComercial.jsp';
-	            } else {
-	                // Exibe o alerta em caso de erro
-	                const alerta = document.getElementById('alerta');
-	                alerta.textContent = 'Login ou Senha incorretos. Tente novamente.';
-	                alerta.classList.remove('d-none');
-	                alerta.classList.add('show');
-	            }
-	        })
-	        .catch(error => {
-	            console.error('Erro na requisição:', error); 
-	            // Exibe o alerta em caso de falha na requisição
-	            const alerta = document.getElementById('alerta');
-	            alerta.textContent = 'Ocorreu um erro na requisição. Tente novamente.';
-	            alerta.classList.remove('d-none');
-	            alerta.classList.add('show');
-	        });
-	    });
+		    fetch('../login', {
+		        method: 'POST',
+		        headers: { 'Content-Type': 'application/json' },
+		        body: JSON.stringify({ login, senha })
+		    })
+		    .then(async response => {
+		        if (response.ok) {
+		            // Redireciona para a página principal em caso de sucesso
+		            window.location.href = 'menuComercial.jsp';
+		        } else {
+		            // Obtém a mensagem de erro do servidor
+		            const errorMessage = await response.text();
+		            const alerta = document.getElementById('alerta');
+		            alerta.textContent = errorMessage; // Mostra a mensagem específica
+		            alerta.classList.remove('d-none');
+		            alerta.classList.add('show');
+		        }
+		    })
+		    .catch(error => {
+		        console.error('Erro na requisição:', error);
+		        const alerta = document.getElementById('alerta');
+		        alerta.textContent = 'Ocorreu um erro na requisição. Tente novamente.';
+		        alerta.classList.remove('d-none');
+		        alerta.classList.add('show');
+		    });
+		});
 	</script>
 </body>
 </html>
