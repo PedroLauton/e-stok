@@ -21,8 +21,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="../index.jsp">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../index.jsp#sobre">Sobre</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../index.jsp#funcionalidades">Funcionalidades</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menuComercial.jsp">Painel</a></li>
+                    <li class="nav-item"><a class="nav-link" href="consultarProduto.jsp">Listar Produtos</a></li>
                 </ul>
             </div>
         </div>
@@ -38,14 +38,13 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="nome" class="form-label">Nome do Produto</label>
-                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do produto">
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do produto" required>
                 </div>
                 <div class="col-md-6">
                     <label for="foto" class="form-label">Foto do Produto</label>
-                    <input type="text" class="form-control" id="foto" name="foto">
+                    <input type="text" class="form-control" id="foto" name="foto"  required>
                 </div>
             </div>
-            
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="categoriaProduto" class="form-label">Categoria do Produto</label>
@@ -78,42 +77,41 @@
                     <input type="text" class="form-control" id="fabricante" name="fabricante" placeholder="Digite o nome do fabricante" required>
                 </div>
             </div>
-
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="valorEnergetico" class="form-label">Valor Energético (kcal)</label>
-                    <input type="number" step="0.01" class="form-control" id="valorEnergetico" name="valorEnergetico" placeholder="Ex: 100">
+                    <input type="number" step="0.01" class="form-control" id="valorEnergetico" name="valorEnergetico" placeholder="Ex: 100"  required>
                 </div>
                 <div class="col-md-4">
                     <label for="carboidratos" class="form-label">Carboidratos (g)</label>
-                    <input type="number" step="0.01" class="form-control" id="carboidratos" name="carboidratos" placeholder="Ex: 20">
+                    <input type="number" step="0.01" class="form-control" id="carboidratos" name="carboidratos" placeholder="Ex: 20"  required>
                 </div>
                 <div class="col-md-4">
-                    <label for="proteinas" class="form-label">Poteínas (g)</label>
-                    <input type="number" step="0.01" class="form-control" id="proteinas" name="proteinas" placeholder="Ex: 5">
+                    <label for="proteinas" class="form-label">Proteínas (g)</label>
+                    <input type="number" step="0.01" class="form-control" id="proteinas" name="proteinas" placeholder="Ex: 5"  required>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="gordurasTotal" class="form-label">Gorduras Totais(g)</label>
-                    <input type="number" step="0.01" class="form-control" id="gordurasTotal" name="gordurasTotal"placeholder="Ex: 10">
+                    <input type="number" step="0.01" class="form-control" id="gordurasTotal" name="gordurasTotal"placeholder="Ex: 10"  required>
                 </div>
                 <div class="col-md-4">
                     <label for="gordurasTrans" class="form-label">Gorduras Trans(g)</label>
-                    <input type="number" step="0.01" class="form-control" id="gordurasTrans" name="gordurasTrans"placeholder="Ex: 10">
+                    <input type="number" step="0.01" class="form-control" id="gordurasTrans" name="gordurasTrans"placeholder="Ex: 10"  required>
                 </div>
                 <div class="col-md-4">
                     <label for="gordurasSaturadas" class="form-label">Gorduras Saturadas(g)</label>
-                    <input type="number" step="0.01" class="form-control" id="gordurasSaturadas" name="gordurasSaturadas"placeholder="Ex: 10">
+                    <input type="number" step="0.01" class="form-control" id="gordurasSaturadas" name="gordurasSaturadas"placeholder="Ex: 10"  required>
                 </div>
                 <div class="col-md-4">
                     <label for="vitaminas" class="form-label">Vitaminas (?)</label>
-                    <input type="number" step="0.01" class="form-control" id="vitaminas" name="vitaminas"placeholder="Ex: 15">
+                    <input type="number" step="0.01" class="form-control" id="vitaminas" name="vitaminas"placeholder="Ex: 15"  required>
                 </div>
                 <div class="col-md-4">
                     <label for="porcao" class="form-label">Porção (g/ml)</label>
-                    <input type="number" step="0.01" class="form-control" id="porcao" name="porcao"placeholder="Ex: 200">
+                    <input type="number" step="0.01" class="form-control" id="porcao" name="porcao"placeholder="Ex: 200"  required>
                 </div>
             </div>
 
