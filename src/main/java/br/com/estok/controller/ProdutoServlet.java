@@ -1,9 +1,12 @@
 package br.com.estok.controller;
 
 import java.io.IOException;
+import java.util.List;
 
+import br.com.estok.entities.Produto;
 import br.com.estok.factory.ControllerFactory;
 import br.com.estok.service.ProdutoService;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,7 +24,10 @@ public class ProdutoServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		List<Produto> produtos = produtoService.listarTodosProdutos();
+		request.setAttribute("Produtos", produtos);
+		RequestDispatcher rd  = request.getRequestDispatcher("pages/consultarProduto.jsp");
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

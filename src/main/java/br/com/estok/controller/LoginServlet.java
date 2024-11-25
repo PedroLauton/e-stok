@@ -1,12 +1,14 @@
 package br.com.estok.controller;
 
 import java.io.IOException;
-import java.net.ResponseCache;
+import java.util.stream.Collectors;
+
+import com.google.gson.Gson;
 
 import br.com.estok.entities.Usuario;
+import br.com.estok.entities.DTO.LoginDTO;
 import br.com.estok.factory.ControllerFactory;
 import br.com.estok.service.LoginService;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,24 +26,34 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("pages/login.jsp");		
+    	HttpSession sessao = request.getSession(false);
+
+		if ((sessao != null && sessao.getAttribute("Usuario") != null)) {
+	    	//Redireciona para a páginas de Login.
+	    	response.sendRedirect("pages/menuComercial.jsp");		
+		} else {
+			//Redireciona para a páginas de Login.
+	    	response.sendRedirect("pages/login.jsp");		
+	    }
 	}
     
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String login = request.getParameter("login");
-		String senha = request.getParameter("senha");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //Lê os dados JSON enviados no corpo da requisição
+        String json = request.getReader().lines().collect(Collectors.joining());
+        Gson gson = new Gson(); // Use a biblioteca Gson ou similar para processar JSON
+        LoginDTO loginDTO = gson.fromJson(json, LoginDTO.class);
 
-		Usuario usuarioAutenticado = loginService.autenticacaoUsuario(login, senha);
-		
-		if(usuarioAutenticado != null) {
-			HttpSession sessao = request.getSession();
-			sessao.setAttribute("Usuario", usuarioAutenticado);
-			request.setAttribute("Usuario", usuarioAutenticado);			
-			response.sendRedirect("pages/menuComercial.jsp");
-	    } else {
-			response.sendRedirect("../index.jsp");
-		}
+        //Usuário autenticado
+        Usuario usuarioAutenticado = loginService.autenticacaoUsuario(loginDTO.getLogin(), loginDTO.getSenha());
 
-	}
-
+        if (usuarioAutenticado != null) {
+            //Se autenticado, inicia sessão e retorna sucesso
+            HttpSession sessao = request.getSession();
+            sessao.setAttribute("Usuario", usuarioAutenticado);
+            response.setStatus(HttpServletResponse.SC_OK);
+        } else {
+            //Caso contrário, retorna erro
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        }
+    }
 }

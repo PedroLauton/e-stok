@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.estok.entities.Produto;
 import br.com.estok.entities.ValoresNutricionais;
+import br.com.estok.entities.enums.CategoriaProduto;
 import br.com.estok.repositories.connection.DbConexao;
 import br.com.estok.repositories.exception.DbException;
 
@@ -52,8 +55,8 @@ public class ProdutoRepository {
 		try {
 			pst = conn.prepareStatement("INSERT INTO tb_valores_nutricionais(produto_id, "
 					+ "valor_energetico, porcao, carboidratos, proteinas, gorduras_trans, "
-					+ "gorduras_saturadas, gorduras_total)"
-					+ "VALUES (?,?,?,?,?,?,?,?)");
+					+ "gorduras_saturadas, gorduras_total, vitaminas)"
+					+ "VALUES (?,?,?,?,?,?,?,?, ?)");
 			
 			pst.setLong(1, produto.getId());
 			pst.setDouble(2, valoresNutricionais.getValorEnergetico());
@@ -63,10 +66,60 @@ public class ProdutoRepository {
 			pst.setDouble(6, valoresNutricionais.getGordurasTrans());
 			pst.setDouble(7, valoresNutricionais.getGordurasSaturadas());
 			pst.setDouble(8, valoresNutricionais.getGordurasTotal());
+			pst.setDouble(9, valoresNutricionais.getVitaminas());
 
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 		}
+	}
+	
+	public List<Produto> listarTodosProdutos() {
+		PreparedStatement pst = null;
+		ResultSet rs =  null;
+		List<Produto> listaProdutos = new ArrayList<>();
+		
+		try {
+			pst = conn.prepareStatement("SELECT tb_produto.*, tb_valores_nutricionais.* "
+					+ "FROM tb_produto INNER JOIN tb_valores_nutricionais "
+					+ "ON tb_produto.id_produto = tb_valores_nutricionais.produto_id ORDER BY tb_produto.nome;");
+			
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				listaProdutos.add(instanciarProduto(rs, instanciarValoresNutricionais(rs)));
+			}
+			return listaProdutos;
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DbConexao.fecharResultSet(rs);
+			DbConexao.fecharStatement(pst);
+		}
+	}
+	
+	private Produto instanciarProduto(ResultSet rs, ValoresNutricionais valoresNutricionais) throws SQLException {
+		Produto produto = new Produto();
+		produto.setId(rs.getLong("id_produto"));
+		produto.setNome(rs.getString("nome"));
+		produto.setFoto(rs.getString("foto"));
+		produto.setFabricante(rs.getString("fabricante"));
+		produto.setCategoriaProduto(CategoriaProduto.valueOf(rs.getString("categoria_produto").toUpperCase()));
+		produto.setValoresNutricionais(valoresNutricionais);
+		return produto;
+	}
+	
+	private ValoresNutricionais instanciarValoresNutricionais(ResultSet rs) throws SQLException {
+		ValoresNutricionais valoresNutricionais = new ValoresNutricionais();
+		valoresNutricionais.setId(rs.getLong("id_valores_nutricionais"));
+		valoresNutricionais.setValorEnergetico(rs.getDouble("valor_energetico"));
+		valoresNutricionais.setPorcao(rs.getDouble("porcao"));
+		valoresNutricionais.setCarboidratos(rs.getDouble("carboidratos"));
+		valoresNutricionais.setProteinas(rs.getDouble("proteinas"));
+		valoresNutricionais.setGordurasTrans(rs.getDouble("gorduras_trans"));
+		valoresNutricionais.setGordurasSaturadas(rs.getDouble("gorduras_saturadas"));
+		valoresNutricionais.setGordurasTotal(rs.getDouble("gorduras_total"));
+		valoresNutricionais.setVitaminas(rs.getDouble("vitaminas"));
+		return valoresNutricionais;
 	}
 }

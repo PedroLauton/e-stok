@@ -47,7 +47,7 @@ public class UsuarioRepository {
 			
 			if(rs.next()) {
 				usuarioAutenticado = new Usuario();
-				usuarioAutenticado.setId(rs.getLong("id"));
+				usuarioAutenticado.setId(rs.getLong("id_usuario"));
 				usuarioAutenticado.setNome(rs.getString("nome"));
 				usuarioAutenticado.setLogin(rs.getString("login"));
 				usuarioAutenticado.setSenha(rs.getString("senha"));

@@ -1,5 +1,7 @@
 package br.com.estok.service;
 
+import java.util.List;
+
 import br.com.estok.entities.Produto;
 import br.com.estok.entities.ValoresNutricionais;
 import br.com.estok.entities.enums.CategoriaProduto;
@@ -17,6 +19,10 @@ private ProdutoRepository produtoRepository = ServiceFactory.criarProdutooReposi
 		produtoRepository.inserirProduto(produtoInserir);
 		ValoresNutricionais valoresNutricionais = instanciarValoresNutricionais(request);
 		produtoRepository.inserirValoresNutricionaisProduto(valoresNutricionais, produtoInserir);
+	}
+	
+	public List<Produto> listarTodosProdutos(){
+		return produtoRepository.listarTodosProdutos();
 	}
 
 	private Produto instanciarProduto(HttpServletRequest request) {

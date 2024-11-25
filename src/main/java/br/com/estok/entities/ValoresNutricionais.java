@@ -14,6 +14,9 @@ public class ValoresNutricionais {
 	private Double vitaminas;
 	private Double porcao;
 	
+	public ValoresNutricionais() {
+	}
+	
 	public ValoresNutricionais(Double valorEnergetico, Double carboidratos, Double proteinas, Double gordurasTotal,Double gordurasTrans, Double gordurasSaturadas,  Double vitaminas, Double porcao) {
 		this.valorEnergetico = valorEnergetico;
 		this.carboidratos = carboidratos;

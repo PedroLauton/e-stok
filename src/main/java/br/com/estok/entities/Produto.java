@@ -16,6 +16,9 @@ public class Produto {
 	private ValoresNutricionais valoresNutricionais; 
 	private List<Lote> lotes;
 	
+	public Produto() {
+	}
+	
 	public Produto(String nome, String foto, CategoriaProduto categoriaProduto, String fabricante) {
 		this.nome = nome;
 		this.foto = foto;
