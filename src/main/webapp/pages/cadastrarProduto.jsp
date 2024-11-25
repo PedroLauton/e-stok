@@ -43,34 +43,33 @@
                 </div>
             </div>
             
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="categoriaProduto" class="form-label">Categoria do Produto</label>
-                    <select class="form-select" id="categoriaProduto" name="categoriaProduto">
-                        <option selected>Escolha uma categoria...</option>
-                        <option value="Cereais">Cereais</option>
-                        <option value="Farinhas">Farinhas</option>
-                        <option value="Massas">Massas</option>
-                        <option value="Leguminosas">Leguminosas</option>
-                        <option value="Carnes">Carnes</option>
-                        <option value="Aves">Aves</option>
-                        <option value="Pescados">Pescados</option>
-                        <option value="Frutas">Frutas</option>
-                        <option value="Hortaliças">Hortaliças</option>
-                        <option value="Laticínios">Laticínios</option>
-                        <option value="Bebidas">Bebidas</option>
-                        <option value="Ovos">Ovos</option>
-                        <option value="Doces">Doces</option>
-                        <option value="Snacks">Snacks</option>
-                        <option value="Óleos">Óleos</option>
-                        <option value="Temperos">Temperos</option>
-                        <option value="Açucares">Açucares</option>
-                        <option value="Bebidas">Bebidas</option>
-                        <option value="Congelados">Congelados</option>
-                        <option value="Naturais">Naturais</option>
+	            <div class="row mb-3">
+	               <div class="col-md-6">
+	    <label for="categoriaProduto" class="form-label">Categoria do Produto</label>
+	    <select class="form-select" id="categoriaProduto" name="categoriaProduto" required>
+	        <option value="" disabled selected>Escolha uma categoria...</option>
+	        <option value="Cereais">Cereais</option>
+	        <option value="Farinhas">Farinhas</option>
+	        <option value="Massas">Massas</option>
+	        <option value="Leguminosas">Leguminosas</option>
+	        <option value="Carnes">Carnes</option>
+	        <option value="Aves">Aves</option>
+	        <option value="Pescados">Pescados</option>
+	        <option value="Frutas">Frutas</option>
+	        <option value="Hortaliças">Hortaliças</option>
+	        <option value="Laticínios">Laticínios</option>
+	        <option value="Bebidas">Bebidas</option>
+	        <option value="Ovos">Ovos</option>
+	        <option value="Doces">Doces</option>
+	        <option value="Snacks">Snacks</option>
+	        <option value="Óleos">Óleos</option>
+	        <option value="Temperos">Temperos</option>
+	        <option value="Açucares">Açucares</option>
+	        <option value="Congelados">Congelados</option>
+	        <option value="Naturais">Naturais</option>
+	    </select>
+	</div>
 
-                    </select>
-                </div>
                 <div class="col-md-6">
                     <label for="fabricante" class="form-label">Fabricante</label>
                     <input type="text" class="form-control" id="fabricante" name="fabricante" placeholder="Digite o nome do fabricante" required>
