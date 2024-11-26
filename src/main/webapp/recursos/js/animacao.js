@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll('.section-animation');
   

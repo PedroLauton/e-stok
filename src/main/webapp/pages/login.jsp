@@ -26,11 +26,11 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item"><a class="nav-link" href="../index.jsp">Home</a>
+					<li class="nav-item me-3"><a class="nav-link" href="../index.jsp">Home</a>
 					</li>
-					<li class="nav-item"><a class="nav-link"
+					<li class="nav-item me-3"><a class="nav-link"
 						href="../index.jsp#sobre">Sobre</a></li>
-					<li class="nav-item"><a class="nav-link"
+					<li class="nav-item me-3"><a class="nav-link"
 						href="../index.jsp#funcionalidades">Funcionalidades</a></li>
 				</ul>
 			</div>
@@ -63,37 +63,29 @@
 		<p>&copy; 2024 E-Stok. Todos os direitos reservados.</p>
 	</footer>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-		document.getElementById('loginForm').addEventListener('submit', function (event) {
+		$("#loginForm").on("submit", function (event) {
 		    event.preventDefault();
 	
-		    const login = document.getElementById('login').value;
-		    const senha = document.getElementById('senha').value;
+		    const login = $("#login").val();
+		    const senha = $("#senha").val();
 	
-		    fetch('../login', {
-		        method: 'POST',
-		        headers: { 'Content-Type': 'application/json' },
-		        body: JSON.stringify({ login, senha })
-		    })
-		    .then(async response => {
-		        if (response.ok) {
+		    $.ajax({
+		        url: "../login",
+		        type: "POST",
+		        contentType: "application/json",
+		        data: JSON.stringify({ login, senha }),
+		        success: function () {
 		            // Redireciona para a página principal em caso de sucesso
-		            window.location.href = 'menuComercial.jsp';
-		        } else {
-		            // Obtém a mensagem de erro do servidor
-		            const errorMessage = await response.text();
-		            const alerta = document.getElementById('alerta');
-		            alerta.textContent = errorMessage; // Mostra a mensagem específica
-		            alerta.classList.remove('d-none');
-		            alerta.classList.add('show');
-		        }
-		    })
-		    .catch(error => {
-		        console.error('Erro na requisição:', error);
-		        const alerta = document.getElementById('alerta');
-		        alerta.textContent = 'Ocorreu um erro na requisição. Tente novamente.';
-		        alerta.classList.remove('d-none');
-		        alerta.classList.add('show');
+		            window.location.href = "menuComercial.jsp";
+		        },
+		        error: function (xhr) {
+		            const errorMessage = xhr.responseText || "Ocorreu um erro na requisição. Tente novamente.";
+		            const alerta = $("#alerta");
+		            alerta.text(errorMessage); // Mostra a mensagem específica ou genérica
+		            alerta.removeClass("d-none").addClass("show");
+		        },
 		    });
 		});
 	</script>

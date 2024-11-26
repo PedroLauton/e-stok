@@ -111,6 +111,7 @@ blockquote {
 
 .botao:hover, .btn-form:hover, .btn-editar:hover {
   background-color: #14c3a2;
+  color: white;
 }
 
 /* Tabela de funcionalidades */
@@ -147,7 +148,47 @@ blockquote {
   line-height: 1.6;
 }
 
+/* Animação Javascripto */
 
+/* Estado inicial */
+.section-animation {
+  opacity: 0;
+  transform: translateY(50px); 
+  transition: all 0.8s ease-out; 
+}
+
+.section-animation.visible {
+  opacity: 1;
+  transform: translateY(0); /* Posição final */
+}
+form.form-custom {
+  background-color: #0de5a8 !important; /* "!important" força a aplicação */
+}
+
+/*Formulários de Cadastro */
+
+/* Cores de fonte */
+.cor-fonte{
+  color: #595b5a;
+}
+/* forçar sobreescrever o estilo padrão do Bootstrap */
+body, .form-label, .form-control, .btn, .navbar, h1, h2, h3, h4, h5, h6 {
+  font-family: 'Rubik', sans-serif !important;
+}
+.btn-cadastro{
+  background-color: #595b5a;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+}
+.btn-cadastro:hover{
+  background-color: #000000;
+  color: #ffffff;
+}
 /* Responsividade - Ajuste de Zoom em telas maiores */
 @media (min-width: 992px) {
   .hero .titulo {
@@ -157,6 +198,11 @@ blockquote {
   .hero p.paragrafo {
     font-size: 1.8rem;
     line-height: 1.7;
+  }
+  .paragrafo{
+    font-size: 1.5rem;
+    line-height: 1.5;
+    font-family: 'Rubik', sans-serif;
   }
 
   .funcionalidades .titulo-funcionalidades {

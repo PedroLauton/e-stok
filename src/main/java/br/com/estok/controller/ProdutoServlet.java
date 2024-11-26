@@ -1,10 +1,12 @@
 package br.com.estok.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import br.com.estok.entities.Produto;
 import br.com.estok.entities.DTO.ProdutoDTO;
@@ -13,7 +15,7 @@ import br.com.estok.exception.DbException;
 import br.com.estok.exception.ValidationErrorDTO;
 import br.com.estok.factory.ControllerFactory;
 import br.com.estok.service.ProdutoService;
-import jakarta.servlet.RequestDispatcher;
+import br.com.estok.util.LocalDateAdapter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -31,12 +33,18 @@ public class ProdutoServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Busca todos os produtos
-		List<Produto> produtos = produtoService.listarTodosProdutos();
-		//Encaminha para o front-end
-		request.setAttribute("Produtos", produtos);
-		RequestDispatcher rd  = request.getRequestDispatcher("pages/consultarProduto.jsp");
-		rd.forward(request, response);
+		//Listar todos os produtos disponiveis.
+		List<Produto> listProdutos = produtoService.listarTodosProdutos();
+		
+		//Tranforma toda a lista em Json para ser consumida pelo Jquery.
+		Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, 
+				new LocalDateAdapter()).create();		
+		String jsonProdutos = gson.toJson(listProdutos);
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		//Encaminha o Json
+		response.getWriter().write(jsonProdutos);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
