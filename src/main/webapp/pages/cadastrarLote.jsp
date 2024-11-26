@@ -23,6 +23,8 @@
                         <li class="nav-item"><a class="nav-link" href="../index.jsp">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="menuComercial.jsp">Painel</a></li>
                         <li class="nav-item"><a class="nav-link" href="consultarLote.jsp">Listar Lote</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">Sair</a></li>
+                        
     
     
                     </ul>

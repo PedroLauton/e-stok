@@ -29,6 +29,10 @@
           <li class="nav-item">
             <a class="nav-link" href="../index.jsp#funcionalidades">Funcionalidades</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Sair</a>
+          </li>
+          
         </ul>
       </div>
     </div>

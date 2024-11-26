@@ -23,6 +23,8 @@
                     <li class="nav-item"><a class="nav-link" href="../index.jsp">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="menuComercial.jsp">Painel</a></li>
                     <li class="nav-item"><a class="nav-link" href="consultarProduto.jsp">Listar Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Sair</a></li>
+                    
                 </ul>
             </div>
         </div>
@@ -36,7 +38,6 @@
         Produto cadastrado com sucesso!
     </div>
 </div>
-
 
         <h2 class="mb-4 text-center">Cadastrar Produtos</h2>
         <form id="formProduto" class="bg-light p-4 rounded form-custom">
@@ -185,3 +186,16 @@
 	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
