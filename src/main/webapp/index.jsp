@@ -14,7 +14,6 @@
 	href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
 	rel="stylesheet">
 <link rel="icon" href="recursos/img/logo-estok.png">
-<script src="/recursos/js/animacao.js"></script>
 
 </head>
 <body>
@@ -39,7 +38,7 @@
 			</div>
 		</div>
 	</nav>
-	<section class="hero py-5 text-center text-md-start">
+<section class="hero py-5 text-center text-md-start section-animation">
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-md-6">
@@ -63,7 +62,7 @@
 			</div>
 		</div>
 	</section>
-	<section id="sobre" class="py-5 text-center text-md-start">
+	<section id="sobre" class="py-5 text-center text-md-start section-animation">
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-md-6">
@@ -91,7 +90,7 @@
 			</div>
 		</div>
 	</section>
-	<section id="funcionalidades" class="funcionalidades py-5">
+	<section id="funcionalidades" class="funcionalidades py-5 section-animation">
 		<div class="container">
 			<div class="row align-items-start">
 				<div class="col-12 col-lg-6">
@@ -207,5 +206,8 @@
 		<p>&copy; 2024 E-Stok. Todos os direitos reservados.</p>
 	</footer>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="recursos/js/animacao.js"></script>
+	
+	
 </body>
 </html>
