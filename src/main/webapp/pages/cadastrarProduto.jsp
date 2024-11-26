@@ -43,8 +43,7 @@
 	<main class="container py-5 flex-grow-1">
 		<!-- Alerta -->
 		<div class="text-center">
-			<div id="alerta" class="alert d-none d-inline-block mx-auto">
-				Produto cadastrado com sucesso!</div>
+			<div id="alerta" class="alert d-none d-inline-block mx-auto"></div>
 		</div>
 		<h2 class="mb-4 text-center">Cadastrar Produtos</h2>
 		<form id="formProduto" class="bg-light p-4 rounded form-custom">
@@ -163,7 +162,7 @@
 	    $("#formProduto").on("submit", function (event) {
 	        event.preventDefault(); 
 	
-	        const data = $(this).serializeArray();
+	        const data = $(this).serializeArray(); 
 	        const jsonData = {};
 	        $.each(data, function (i, field) {
 	            jsonData[field.name] = field.value; 
@@ -172,7 +171,7 @@
 	        $.ajax({
 	            url: "../produto",
 	            type: "POST",
-	            contentType: "application/json", /
+	            contentType: "application/json",
 	            data: JSON.stringify(jsonData), 
 	            success: function (message) {
 	                const alerta = $("#alerta");
@@ -189,7 +188,7 @@
 	                const alerta = $("#alerta");
 	                alerta.removeClass("d-none alert-success").addClass("alert-danger");
 	                alerta.text(xhr.responseText || "Erro desconhecido.");
-	                
+	
 	                $("html, body").animate({ scrollTop: 0 }, "fast");
 	            },
 	        });
