@@ -41,6 +41,8 @@
 						href="menuComercial.jsp">Painel</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="cadastrarProduto.jsp">Cadastrar Produto</a></li>
+						<li class="nav-item"><a class="nav-link"
+						href="">Sair</a></li>
 
 
 				</ul>
