@@ -11,6 +11,9 @@ public class ValoresNutricionaisDTO {
 	private Double vitaminas;
 	private Double porcao;
 	
+	public ValoresNutricionaisDTO() {
+	}
+	
 	public ValoresNutricionaisDTO(Double valorEnergetico, Double carboidratos, Double proteinas, Double gordurasTotal,Double gordurasTrans, Double gordurasSaturadas,  Double vitaminas, Double porcao) {
 		this.valorEnergetico = valorEnergetico;
 		this.carboidratos = carboidratos;

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E-Stok - Gerenciamento de Produtos</title>
+<title>E-Stok - Cadastro de Produto</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -32,9 +32,8 @@
 						href="menuComercial.jsp">Home</a></li>
 					<li class="nav-item me-3"><a class="nav-link"
 						href="../index.jsp">Página inical</a></li>
-					<li class="nav-item me-3"><a class="nav-link" href="">Sair</a>
-					</li>
-
+					<li class="nav-item me-3 "><a class="btn btn-outline-danger"
+						href="../logout">Sair</a></li>
 				</ul>
 			</div>
 		</div>
@@ -162,30 +161,26 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 	    $("#formProduto").on("submit", function (event) {
-	        event.preventDefault(); // Previne o envio padrão do formulário
+	        event.preventDefault(); 
 	
-	        // Capturar os dados do formulário
-	        const data = $(this).serializeArray(); // Serializa o formulário em um array de objetos {name, value}
+	        const data = $(this).serializeArray();
 	        const jsonData = {};
 	        $.each(data, function (i, field) {
-	            jsonData[field.name] = field.value; // Converte para um objeto JSON
+	            jsonData[field.name] = field.value; 
 	        });
 	
-	        // Fazer a requisição AJAX
 	        $.ajax({
 	            url: "../produto",
 	            type: "POST",
-	            contentType: "application/json", // Envia como JSON
-	            data: JSON.stringify(jsonData), // Converte para JSON
+	            contentType: "application/json", /
+	            data: JSON.stringify(jsonData), 
 	            success: function (message) {
 	                const alerta = $("#alerta");
 	                alerta.removeClass("d-none alert-danger").addClass("alert-success");
 	                alerta.text(message);
 	
-	                // Rola para o topo da página
 	                $("html, body").animate({ scrollTop: 0 }, "fast");
 	
-	                // Redireciona após 3 segundos
 	                setTimeout(function () {
 	                    window.location.href = "consultarProduto.jsp";
 	                }, 3000);
@@ -194,8 +189,7 @@
 	                const alerta = $("#alerta");
 	                alerta.removeClass("d-none alert-success").addClass("alert-danger");
 	                alerta.text(xhr.responseText || "Erro desconhecido.");
-	
-	                // Rola para o topo da página
+	                
 	                $("html, body").animate({ scrollTop: 0 }, "fast");
 	            },
 	        });

@@ -1,1 +1,1 @@
-SELECT * FROM db_estok.tb_produto;
+SELECT * FROM db_estok.tb_valores_nutricionais;

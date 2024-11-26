@@ -9,6 +9,9 @@ public class ProdutoDTO {
 	private String categoriaProduto;
 	private String fabricante;
 	
+	public ProdutoDTO() {
+	}
+	
 	public ProdutoDTO(String nome, String foto, String categoriaProduto, String fabricante) {
 		this.nome = nome;
 		this.foto = foto;

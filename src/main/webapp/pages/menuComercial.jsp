@@ -32,9 +32,8 @@
 						href="menuComercial.jsp">Home</a></li>
 					<li class="nav-item me-3"><a class="nav-link"
 						href="../index.jsp">Página inical</a></li>
-					<li class="nav-item me-3"><a class="nav-link" href="">Sair</a>
-					</li>
-
+					<li class="nav-item me-3 "><a class="btn btn-outline-danger"
+						href="../logout">Sair</a></li>
 				</ul>
 			</div>
 		</div>
@@ -44,7 +43,7 @@
 	<main
 		class="flex-grow-1 d-flex align-items-center justify-content-center">
 		<div class="container text-center">
-			<h2 class="mb-4">Menu de Administração</h2>
+			<h2 class="mb-4">Menu de Gerenciamento</h2>
 			<!-- Título mais para cima, ajustado via CSS -->
 			<div class="row d-flex flex-column align-items-center gy-3">
 				<!-- Alinhamento vertical dos botões -->

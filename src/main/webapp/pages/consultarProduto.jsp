@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E-Stok - Listar Produtos</title>
+<title>E-Stok - Consultar Produtos</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -32,7 +32,8 @@
 						href="menuComercial.jsp">Home</a></li>
 					<li class="nav-item me-3"><a class="nav-link"
 						href="cadastrarProduto.jsp">Cadastrar Produto</a></li>
-					<li class="nav-item me-3"><a class="nav-link" href="">Sair</a></li>
+					<li class="nav-item me-3 "><a class="btn btn-outline-danger"
+						href="../logout">Sair</a></li>
 				</ul>
 			</div>
 		</div>
@@ -40,7 +41,7 @@
 
 	<!-- Lista de Produtos -->
 	<main class="container py-5 flex-grow-1">
-		<h2 class="mb-4 text-center">Listagem de Produtos</h2>
+		<h2 class="mb-4 text-center">Consulta de Produtos</h2>
 		<!-- Barra de Pesquisa -->
 		<div class="row mb-4">
 			<div class="col-12 col-md-6 mx-auto">
@@ -69,7 +70,8 @@
 			            <th>Ações</th>
 			        </tr>
 				</thead>
-				<tbody>
+				<tbody id="jsonDisplay">
+				
 				</tbody>
 			</table>
 		</div>
@@ -92,7 +94,7 @@
 		            console.log("Produtos retornados:", produtos);
 	
 		            produtos.forEach(function (produto) {
-		                $("tbody").append(`
+		                $("#jsonDisplay").append(`
 		                    <tr>
 		                        <td>${produto.id}</td>
 		                        <td>${produto.nome}</td>

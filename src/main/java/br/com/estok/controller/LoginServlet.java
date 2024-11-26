@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Lê os dados JSON enviados no corpo da requisição
         String json = request.getReader().lines().collect(Collectors.joining());
-        Gson gson = new Gson(); 
+		Gson gson = new Gson();
         LoginDTO loginDTO = gson.fromJson(json, LoginDTO.class);
         
 		try {

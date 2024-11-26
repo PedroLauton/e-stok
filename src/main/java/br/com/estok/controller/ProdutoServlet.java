@@ -38,7 +38,9 @@ public class ProdutoServlet extends HttpServlet {
 		
 		//Tranforma toda a lista em Json para ser consumida pelo Jquery.
 		Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, 
-				new LocalDateAdapter()).create();		
+				new LocalDateAdapter())
+				.create();
+		
 		String jsonProdutos = gson.toJson(listProdutos);
 		
 		response.setContentType("application/json");
@@ -50,7 +52,7 @@ public class ProdutoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Lê os dados JSON enviados no corpo da requisição
 		String json = request.getReader().lines().collect(Collectors.joining());
-        Gson gson = new Gson(); 
+		Gson gson = new Gson();
         //Dados Json convertidos para as classes DTO.
         ProdutoDTO produtoDTO = gson.fromJson(json, ProdutoDTO.class);
         ValoresNutricionaisDTO valoresNutricionaisDTO = gson.fromJson(json, ValoresNutricionaisDTO.class);

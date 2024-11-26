@@ -77,13 +77,12 @@
 		        contentType: "application/json",
 		        data: JSON.stringify({ login, senha }),
 		        success: function () {
-		            // Redireciona para a página principal em caso de sucesso
 		            window.location.href = "menuComercial.jsp";
 		        },
 		        error: function (xhr) {
 		            const errorMessage = xhr.responseText || "Ocorreu um erro na requisição. Tente novamente.";
 		            const alerta = $("#alerta");
-		            alerta.text(errorMessage); // Mostra a mensagem específica ou genérica
+		            alerta.text(errorMessage); 
 		            alerta.removeClass("d-none").addClass("show");
 		        },
 		    });
