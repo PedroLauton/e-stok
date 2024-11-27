@@ -9,17 +9,17 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias e ferramentas:
 - **Java** como linguagem principal;
 - **Eclipse EE** como IDE principal;
 - **Tomcar Server 10.1** como servidor para aplicação;
-- **MySql** como banco de dados;
+- **MySql** como banco de dados.
 
 ## Clonar o projeto
 
 Para clonar o projeto, basta digitar o seguinte comando no Git Bash: 
 
 ```bash
-git clone https://github.com/PedroLauton/desafioDuxusEstagio.git
+git clone https://github.com/PedroLauton/e-stok.git
 ```
 
-Caso já tenha o Tomcat Server instalado, basta vincular ao projeto e iniciar o projeto. Caso contrário, baixe o Tomcat no seguinte link: 
+Caso já tenha o Tomcat Server instalado, basta vincular ao projeto e iniciar. Caso contrário, baixe o Tomcat no seguinte link: 
 
 ```bash
 https://tomcat.apache.org/download-10.cgi
@@ -34,7 +34,6 @@ O E-stok é uma plataforma para cadastro de produtos e lotes, com geração de u
 ![image](https://github.com/user-attachments/assets/cecce9ed-5f35-433f-81ad-9ee7520d9a8a)
 ![image](https://github.com/user-attachments/assets/1c719e89-5b4e-4049-a6d4-0bfecfc9e020)
 ![image](https://github.com/user-attachments/assets/153f5040-8b8e-4cde-a67b-9bd8ceea6617)
-
 
 ## Contato
 
