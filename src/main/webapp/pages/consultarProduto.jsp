@@ -116,17 +116,16 @@
 	                    );
 	                });
 	
-	                // Adiciona evento de clique para o botão Excluir
 	                $(".excluir-btn").click(function () {
 	                    const id = $(this).data("id");
 	
 	                    if (confirm("Tem certeza que deseja excluir este produto?")) {
 	                        $.ajax({
-	                            url: "../produto?id=" + id, // Concatena corretamente o ID na URL
+	                            url: "../produto?id=" + id, 
 	                            method: "DELETE",
 	                            success: function (response) {
 	                                alert("Produto excluído com sucesso!");
-	                                location.reload(); // Recarrega a página após exclusão
+	                                location.reload(); 
 	                            },
 	                            error: function (error) {
 	                                console.error("Erro ao excluir o produto:", error);
