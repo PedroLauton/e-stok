@@ -72,13 +72,21 @@ public class ProdutoServlet extends HttpServlet {
 			response.getWriter().write("Erro ao enviar os dados. Tente novamente.");	
 		}
 	}
-
+	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
-
 	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		Long id = Long.decode(request.getParameter("id"));
+		
+		try {
+			produtoService.deletarProdutoId(id);
+			response.setStatus(HttpServletResponse.SC_OK);
+			response.getWriter().write("Produto deletado com sucesso!");
+		} catch(DbException e) {
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.getWriter().write(e.getMessage());
+		}
 	}
 
 }

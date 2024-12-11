@@ -76,6 +76,26 @@ public class ProdutoRepository {
 		}
 	}
 	
+	public void deletarProdutoId(Long id) throws DbException {
+		PreparedStatement pst = null;
+		
+		try {
+			pst = conn.prepareStatement("DELETE FROM tb_produto, tb_valores_nutricionais WHERE tb_produto.produto_id = ?;");
+			pst.setLong(1, id);
+
+			Integer resultado = pst.executeUpdate();
+			
+			if(resultado == 0) {
+				throw new DbException("Nenhum produto excluído. Tente Novamente.");
+			}
+			
+		} catch (SQLException e) {
+			throw new DbException("Erro ao inserir o produto. Contacte o Administrador do E-stok.");
+		} finally {
+			DbConexao.fecharStatement(pst);
+		}
+	}
+	
 	public List<Produto> listarTodosProdutos() throws DbException {
 		PreparedStatement pst = null;
 		ResultSet rs =  null;

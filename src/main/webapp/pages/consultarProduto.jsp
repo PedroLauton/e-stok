@@ -6,10 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>E-Stok - Consultar Produtos</title>
 <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+	href="../assets/css/bootstrap.min.css"
 	rel="stylesheet">
 <link
-	href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
+	href="../styles/css2?family=Rubik:wght@400;500;700&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet" href="../styles/estilo.css">
 <link rel="icon" href="../recursos/img/logo-estok.png">
@@ -71,7 +71,7 @@
 			        </tr>
 				</thead>
 				<tbody id="jsonDisplay">
-				
+					
 				</tbody>
 			</table>
 		</div>
@@ -82,8 +82,8 @@
 		<p>&copy; 2024 E-Stok. Todos os direitos reservados.</p>
 	</footer>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="../assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../assets/js/jquery-3.6.0.min.js"></script>
 	<script>
 		$(document).ready(function () {
 		    $.ajax({
@@ -92,35 +92,36 @@
 		        dataType: "json",
 		        success: function (produtos) {
 		            console.log("Produtos retornados:", produtos);
-	
+		            
 		            produtos.forEach(function (produto) {
-		                $("#jsonDisplay").append(`
-		                    <tr>
-		                        <td>${produto.id}</td>
-		                        <td>${produto.nome}</td>
-		                        <td>${produto.categoriaProduto}</td>
-		                        <td>${produto.fabricante}</td>
-		                        <td>${produto.valoresNutricionais.valorEnergetico}</td>
-		                        <td>${produto.valoresNutricionais.proteinas}</td>
-		                        <td>${produto.valoresNutricionais.gordurasTrans}</td>
-		                        <td>${produto.valoresNutricionais.gordurasSaturadas}</td>
-		                        <td>${produto.valoresNutricionais.gordurasTotal}</td>
-		                        <td>${produto.valoresNutricionais.vitaminas}</td>
-		                        <td>${produto.valoresNutricionais.porcao}</td>
-		                        <td>
-		                            <div class="d-flex gap-2">
-		                                <button class="btn btn-sm btn-primary">Editar</button>
-		                                <button class="btn btn-sm btn-danger">Excluir</button>
-		                            </div>
-		                        </td>
-		                    </tr>
-		                `);
+		                $("#jsonDisplay").append(
+		                    '<tr>'+		            
+		                        '<td>'+ produto.id +'</td>'+
+		                        '<td>'+ produto.nome +'</td>'+
+		                        '<td>'+ produto.categoriaProduto +'</td>'+
+		                        '<td>'+ produto.fabricante +'</td>'+
+		                        '<td>'+ produto.valoresNutricionais.valorEnergetico +'</td>'+
+		                        '<td>'+ produto.valoresNutricionais.proteinas +'</td>'+
+		                        '<td>'+ produto.valoresNutricionais.gordurasTrans +'</td>'+
+		                        '<td>'+ produto.valoresNutricionais.gordurasSaturadas +'</td>'+
+		                        '<td>'+ produto.valoresNutricionais.gordurasTotal +'</td>'+
+		                        '<td>'+ produto.valoresNutricionais.vitaminas +'</td>'+
+		                        '<td>'+ produto.valoresNutricionais.porcao +'</td>'+
+		                        '<td>'+
+		                            '<div class="d-flex gap-2">'+
+		                                '<button class="btn btn-sm btn-primary">Editar</button>'+
+		                                '<button id="excluir" class="btn btn-sm btn-danger">Excluir</button>'+
+		                            '</div>'+
+		                        '</td>'+
+		                    '</tr>'
+		                );
 		            });
 		        },
 		        error: function (error) {
 		            console.error("Erro ao carregar os produtos:", error);
 		        }
 		    });
+		    
 		});
 	</script>
 </body>

@@ -34,6 +34,10 @@ private ProdutoRepository produtoRepository = ServiceFactory.criarProdutooReposi
 		return produtoRepository.listarTodosProdutos();
 	}
 	
+	public void deletarProdutoId(Long id) throws DbException{
+		produtoRepository.deletarProdutoId(id);
+	}
+	
 	private Produto instanciarProduto(ProdutoDTO produtoDTO) {
 		Produto produtoInserir = new Produto(produtoDTO.getNome(),
 				produtoDTO.getFoto(), 
