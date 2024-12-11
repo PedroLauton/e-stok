@@ -13,7 +13,7 @@ public class DbConexao {
 	private static String driver = "com.mysql.cj.jdbc.Driver";
 	private static String url = "jdbc:mysql://127.0.0.1:3306/db_estok?useTimezone=True&serverTimezone=UTC";
 	private static String usuario = "root";
-	private static String senha = "senha";
+	private static String senha = "db@mysql";
 	
 	private static Connection conn = null;
 	

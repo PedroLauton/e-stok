@@ -80,7 +80,7 @@ public class ProdutoRepository {
 		PreparedStatement pst = null;
 		
 		try {
-			pst = conn.prepareStatement("DELETE FROM tb_produto, tb_valores_nutricionais WHERE tb_produto.produto_id = ?;");
+			pst = conn.prepareStatement("DELETE FROM tb_produto WHERE id_produto = ?;");
 			pst.setLong(1, id);
 
 			Integer resultado = pst.executeUpdate();
@@ -90,7 +90,7 @@ public class ProdutoRepository {
 			}
 			
 		} catch (SQLException e) {
-			throw new DbException("Erro ao inserir o produto. Contacte o Administrador do E-stok.");
+			throw new DbException(e.getMessage());
 		} finally {
 			DbConexao.fecharStatement(pst);
 		}

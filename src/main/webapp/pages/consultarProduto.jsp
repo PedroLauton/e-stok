@@ -9,7 +9,7 @@
 	href="../assets/css/bootstrap.min.css"
 	rel="stylesheet">
 <link
-	href="../styles/css2?family=Rubik:wght@400;500;700&display=swap"
+	href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet" href="../styles/estilo.css">
 <link rel="icon" href="../recursos/img/logo-estok.png">
@@ -17,7 +17,6 @@
 <body class="d-flex flex-column min-vh-100">
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-		<!-- fixed top para fixar ela -->
 		<div class="container">
 			<a class="navbar-brand" href="menuComercial.jsp">E-Stok</a>
 			<button class="navbar-toggler" type="button"
@@ -31,7 +30,7 @@
 					<li class="nav-item me-3"><a class="nav-link"
 						href="menuComercial.jsp">Home</a></li>
 					<li class="nav-item me-3"><a class="nav-link"
-						href="cadastrarProduto.jsp">Cadastrar Produto</a></li>
+						href="../index.jsp">Página inical</a></li>
 					<li class="nav-item me-3 "><a class="btn btn-outline-danger"
 						href="../logout">Sair</a></li>
 				</ul>
@@ -85,45 +84,64 @@
 	<script src="../assets/js/bootstrap.bundle.min.js"></script>
 	<script src="../assets/js/jquery-3.6.0.min.js"></script>
 	<script>
-		$(document).ready(function () {
-		    $.ajax({
-		        url: "../produto",
-		        method: "GET",
-		        dataType: "json",
-		        success: function (produtos) {
-		            console.log("Produtos retornados:", produtos);
-		            
-		            produtos.forEach(function (produto) {
-		                $("#jsonDisplay").append(
-		                    '<tr>'+		            
-		                        '<td>'+ produto.id +'</td>'+
-		                        '<td>'+ produto.nome +'</td>'+
-		                        '<td>'+ produto.categoriaProduto +'</td>'+
-		                        '<td>'+ produto.fabricante +'</td>'+
-		                        '<td>'+ produto.valoresNutricionais.valorEnergetico +'</td>'+
-		                        '<td>'+ produto.valoresNutricionais.proteinas +'</td>'+
-		                        '<td>'+ produto.valoresNutricionais.gordurasTrans +'</td>'+
-		                        '<td>'+ produto.valoresNutricionais.gordurasSaturadas +'</td>'+
-		                        '<td>'+ produto.valoresNutricionais.gordurasTotal +'</td>'+
-		                        '<td>'+ produto.valoresNutricionais.vitaminas +'</td>'+
-		                        '<td>'+ produto.valoresNutricionais.porcao +'</td>'+
-		                        '<td>'+
-		                            '<div class="d-flex gap-2">'+
-		                                '<button class="btn btn-sm btn-primary">Editar</button>'+
-		                                '<button id="excluir" class="btn btn-sm btn-danger">Excluir</button>'+
-		                            '</div>'+
-		                        '</td>'+
-		                    '</tr>'
-		                );
-		            });
-		        },
-		        error: function (error) {
-		            console.error("Erro ao carregar os produtos:", error);
-		        }
-		    });
-		    
-		});
-	</script>
+	    $(document).ready(function () {
+	        $.ajax({
+	            url: "../produto",
+	            method: "GET",
+	            dataType: "json",
+	            success: function (produtos) {
+	                console.log("Produtos retornados:", produtos);
+	                
+	                produtos.forEach(function (produto) {
+	                    $("#jsonDisplay").append(
+	                        '<tr>'+		            
+	                            '<td>'+ produto.id +'</td>'+
+	                            '<td>'+ produto.nome +'</td>'+
+	                            '<td>'+ produto.categoriaProduto +'</td>'+
+	                            '<td>'+ produto.fabricante +'</td>'+
+	                            '<td>'+ produto.valoresNutricionais.valorEnergetico +'</td>'+
+	                            '<td>'+ produto.valoresNutricionais.proteinas +'</td>'+
+	                            '<td>'+ produto.valoresNutricionais.gordurasTrans +'</td>'+
+	                            '<td>'+ produto.valoresNutricionais.gordurasSaturadas +'</td>'+
+	                            '<td>'+ produto.valoresNutricionais.gordurasTotal +'</td>'+
+	                            '<td>'+ produto.valoresNutricionais.vitaminas +'</td>'+
+	                            '<td>'+ produto.valoresNutricionais.porcao +'</td>'+
+	                            '<td>'+
+	                                '<div class="d-flex gap-2">'+
+	                                    '<button class="btn btn-sm btn-primary">Editar</button>'+
+	                                    '<button class="btn btn-sm btn-danger excluir-btn" data-id="'+ produto.id +'">Excluir</button>'+
+	                                '</div>'+
+	                            '</td>'+
+	                        '</tr>'
+	                    );
+	                });
+	
+	                // Adiciona evento de clique para o botão Excluir
+	                $(".excluir-btn").click(function () {
+	                    const id = $(this).data("id");
+	
+	                    if (confirm("Tem certeza que deseja excluir este produto?")) {
+	                        $.ajax({
+	                            url: "../produto?id=" + id, // Concatena corretamente o ID na URL
+	                            method: "DELETE",
+	                            success: function (response) {
+	                                alert("Produto excluído com sucesso!");
+	                                location.reload(); // Recarrega a página após exclusão
+	                            },
+	                            error: function (error) {
+	                                console.error("Erro ao excluir o produto:", error);
+	                                alert("Ocorreu um erro ao tentar excluir o produto.");
+	                            }
+	                        });
+	                    }
+	                });
+	            },
+	            error: function (error) {
+	                console.error("Erro ao carregar os produtos:", error);
+	            }
+	        });
+	    });
+</script>
 </body>
 </html>
 

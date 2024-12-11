@@ -79,6 +79,11 @@ public class ProdutoServlet extends HttpServlet {
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Long id = Long.decode(request.getParameter("id"));
 		
+		if(id == null) {
+			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
+			response.getWriter().write("Id Nulo.");
+		}
+		
 		try {
 			produtoService.deletarProdutoId(id);
 			response.setStatus(HttpServletResponse.SC_OK);
