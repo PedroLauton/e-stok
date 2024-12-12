@@ -32,21 +32,35 @@ public class ProdutoServlet extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Listar todos os produtos disponiveis.
-		List<Produto> listProdutos = produtoService.listarTodosProdutos();
-		
-		//Tranforma toda a lista em Json para ser consumida pelo Jquery.
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String idParametro = request.getParameter("id");
+		//Tranforma objetos em Json para ser consumida pelo Jquery.
 		Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, 
 				new LocalDateAdapter())
 				.create();
-		
-		String jsonProdutos = gson.toJson(listProdutos);
-		
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		//Encaminha o Json
-		response.getWriter().write(jsonProdutos);
+
+		if(idParametro != null && !idParametro.isEmpty()) {
+			try {
+				Long id = Long.decode(idParametro);
+				Produto produto = produtoService.listarProdutoId(id);
+				String jsonProdutos = gson.toJson(produto);
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				//Encaminha o Json
+				response.getWriter().write(jsonProdutos);
+			} catch(DbException e) {
+				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+				response.getWriter().write(e.getMessage());		
+			}
+		} else {
+			//Listar todos os produtos disponiveis.
+			List<Produto> listProdutos = produtoService.listarTodosProdutos();
+			String jsonProdutos = gson.toJson(listProdutos);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			//Encaminha o Json
+			response.getWriter().write(jsonProdutos);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -74,6 +88,7 @@ public class ProdutoServlet extends HttpServlet {
 	}
 	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

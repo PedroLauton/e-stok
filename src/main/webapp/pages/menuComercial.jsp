@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>E-Stok - Menu</title>
 <link
-	href="../assets/css/bootstrap.min.css"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="../styles/estilo.css">
 <link
@@ -74,8 +74,7 @@
 	<footer class="py-3 bg-white text-black text-center mt-auto">
 		<p>&copy; 2024 E-Stok. Todos os direitos reservados.</p>
 	</footer>
-
-	<script src="../assets/js/bootstrap.bundle.min.js"></script>
-	<script src="../assets/js/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>

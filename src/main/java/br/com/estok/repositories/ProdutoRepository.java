@@ -120,6 +120,31 @@ public class ProdutoRepository {
 		}
 	}
 	
+	public Produto listarProdutoId(Long id) throws DbException {
+		PreparedStatement pst = null;
+		ResultSet rs =  null;
+		
+		try {
+			pst = conn.prepareStatement("SELECT tb_produto.*, tb_valores_nutricionais.* "
+					+ "FROM tb_produto INNER JOIN tb_valores_nutricionais "
+					+ "ON tb_produto.id_produto = tb_valores_nutricionais.produto_id WHERE tb_produto.id_produto = ?;");
+			pst.setLong(1, id);
+			
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				return instanciarProduto(rs, instanciarValoresNutricionais(rs));
+			} else {
+				throw new DbException("Erro ao exibir o produto. Tente Novamente.");
+			}
+		} catch (SQLException e) {
+			throw new DbException("Erro ao inserir o produto. Contacte o Administrador do E-stok.");
+		} finally {
+			DbConexao.fecharResultSet(rs);
+			DbConexao.fecharStatement(pst);
+		}
+	}
+	
 	private Produto instanciarProduto(ResultSet rs, ValoresNutricionais valoresNutricionais) throws SQLException {
 		Produto produto = new Produto();
 		produto.setId(rs.getLong("id_produto"));

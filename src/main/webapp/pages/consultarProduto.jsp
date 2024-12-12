@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>E-Stok - Consultar Produtos</title>
 <link
-	href="../assets/css/bootstrap.min.css"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
@@ -81,8 +81,8 @@
 		<p>&copy; 2024 E-Stok. Todos os direitos reservados.</p>
 	</footer>
 
-	<script src="../assets/js/bootstrap.bundle.min.js"></script>
-	<script src="../assets/js/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 	    $(document).ready(function () {
 	        $.ajax({
@@ -108,7 +108,7 @@
 	                            '<td>'+ produto.valoresNutricionais.porcao +'</td>'+
 	                            '<td>'+
 	                                '<div class="d-flex gap-2">'+
-	                                    '<button class="btn btn-sm btn-primary">Editar</button>'+
+	                                    '<a href="editarProduto.jsp?id=' + produto.id +'" class="btn btn-sm btn-primary">Editar</a>'+
 	                                    '<button class="btn btn-sm btn-danger excluir-btn" data-id="'+ produto.id +'">Excluir</button>'+
 	                                '</div>'+
 	                            '</td>'+

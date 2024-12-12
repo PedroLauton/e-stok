@@ -34,6 +34,10 @@ private ProdutoRepository produtoRepository = ServiceFactory.criarProdutooReposi
 		return produtoRepository.listarTodosProdutos();
 	}
 	
+	public Produto listarProdutoId(Long id) throws DbException{
+		return produtoRepository.listarProdutoId(id);
+	}
+	
 	public void deletarProdutoId(Long id) throws DbException{
 		produtoRepository.deletarProdutoId(id);
 	}
