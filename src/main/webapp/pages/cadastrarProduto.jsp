@@ -53,10 +53,10 @@
 					type="text" class="form-control cor-input" id="nome" name="nome"
 					placeholder="Ex: Arroz Branco Tipo 1" required>
 			</div>
-			<div class="mb-3">
+			<!--<div class="mb-3">
 				<label for="foto" class="form-label">Foto do Produto</label> <input
 					type="text" class="form-control cor-input" id="foto" name="foto">
-			</div>
+			</div>-->
 
 			<div class="mb-3">
 				<label for="categoriaProduto" class="form-label">Categoria

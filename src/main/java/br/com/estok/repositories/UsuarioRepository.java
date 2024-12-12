@@ -66,7 +66,7 @@ public class UsuarioRepository {
 			TipoUsuario tipoUsuario = TipoUsuario.valueOf(dado);
 			return tipoUsuario;
 		} catch (SQLException e) {
-			throw new DbException("Erro ao realizar a autenticação. Contacte o Administrador do E-stok.");
+			throw new DbException("Erro ao realizar a autenticação (Cargo). Contacte o Administrador do E-stok.");
 		}
 	}
 }

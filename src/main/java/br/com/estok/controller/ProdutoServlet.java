@@ -34,7 +34,6 @@ public class ProdutoServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idParametro = request.getParameter("id");
-		//Tranforma objetos em Json para ser consumida pelo Jquery.
 		Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, 
 				new LocalDateAdapter())
 				.create();
@@ -46,28 +45,23 @@ public class ProdutoServlet extends HttpServlet {
 				String jsonProdutos = gson.toJson(produto);
 				response.setContentType("application/json");
 				response.setCharacterEncoding("UTF-8");
-				//Encaminha o Json
 				response.getWriter().write(jsonProdutos);
 			} catch(DbException e) {
 				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 				response.getWriter().write(e.getMessage());		
 			}
 		} else {
-			//Listar todos os produtos disponiveis.
 			List<Produto> listProdutos = produtoService.listarTodosProdutos();
 			String jsonProdutos = gson.toJson(listProdutos);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
-			//Encaminha o Json
 			response.getWriter().write(jsonProdutos);
 		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //Lê os dados JSON enviados no corpo da requisição
 		String json = request.getReader().lines().collect(Collectors.joining());
 		Gson gson = new Gson();
-        //Dados Json convertidos para as classes DTO.
         ProdutoDTO produtoDTO = gson.fromJson(json, ProdutoDTO.class);
         ValoresNutricionaisDTO valoresNutricionaisDTO = gson.fromJson(json, ValoresNutricionaisDTO.class);
                 
@@ -108,5 +102,4 @@ public class ProdutoServlet extends HttpServlet {
 			response.getWriter().write(e.getMessage());
 		}
 	}
-
 }

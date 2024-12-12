@@ -70,7 +70,7 @@ public class ProdutoRepository {
 
 			pst.executeUpdate();
 		} catch (SQLException e) {
-			throw new DbException("Erro ao inserir o produto. Contacte o Administrador do E-stok.");
+			throw new DbException("Erro ao inserir os valores nutricionais. Contacte o Administrador do E-stok.");
 		} finally {
 			DbConexao.fecharStatement(pst);
 		}
@@ -90,7 +90,7 @@ public class ProdutoRepository {
 			}
 			
 		} catch (SQLException e) {
-			throw new DbException(e.getMessage());
+			throw new DbException("Erro ao excluir o produto. Contacte o Administrador do E-stok.");
 		} finally {
 			DbConexao.fecharStatement(pst);
 		}
@@ -113,7 +113,7 @@ public class ProdutoRepository {
 			}
 			return listaProdutos;
 		} catch (SQLException e) {
-			throw new DbException("Erro ao inserir o produto. Contacte o Administrador do E-stok.");
+			throw new DbException("Erro listar produtos. Contacte o Administrador do E-stok.");
 		} finally {
 			DbConexao.fecharResultSet(rs);
 			DbConexao.fecharStatement(pst);
@@ -138,7 +138,7 @@ public class ProdutoRepository {
 				throw new DbException("Erro ao exibir o produto. Tente Novamente.");
 			}
 		} catch (SQLException e) {
-			throw new DbException("Erro ao inserir o produto. Contacte o Administrador do E-stok.");
+			throw new DbException("Erro ao listar produto. Contacte o Administrador do E-stok.");
 		} finally {
 			DbConexao.fecharResultSet(rs);
 			DbConexao.fecharStatement(pst);

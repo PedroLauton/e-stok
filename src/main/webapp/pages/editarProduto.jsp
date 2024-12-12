@@ -20,7 +20,7 @@
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="../index.jsp">E-Stok</a>
+			<a class="navbar-brand" href="menuComercial.jsp">E-Stok</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarNav"
 				aria-controls="navbarNav" aria-expanded="false"
@@ -29,13 +29,12 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item"><a class="nav-link" href="../index.jsp">Home</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="menuComercial.jsp">Painel</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="consultarProduto.jsp">Listar Produto</a></li>
-					<li class="nav-item"><a class="nav-link" href="">Sair</a></li>
-
+					<li class="nav-item me-3"><a class="nav-link"
+						href="menuComercial.jsp">Home</a></li>
+					<li class="nav-item me-3"><a class="nav-link"
+						href="../index.jsp">Página inical</a></li>
+					<li class="nav-item me-3 "><a class="btn btn-outline-danger"
+						href="../logout">Sair</a></li>
 				</ul>
 			</div>
 		</div>
