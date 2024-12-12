@@ -113,11 +113,11 @@ DROP TABLE IF EXISTS `tb_produto`;
 CREATE TABLE `tb_produto` (
   `id_produto` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(200) NOT NULL,
-  `foto` varchar(200) NOT NULL,
+  `foto` varchar(200) DEFAULT NULL,
   `categoria_produto` varchar(20) NOT NULL,
   `fabricante` varchar(200) NOT NULL,
   PRIMARY KEY (`id_produto`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +126,7 @@ CREATE TABLE `tb_produto` (
 
 LOCK TABLES `tb_produto` WRITE;
 /*!40000 ALTER TABLE `tb_produto` DISABLE KEYS */;
-INSERT INTO `tb_produto` VALUES (28,'Arroz','arroz.png','CEREAIS','Dona Benta'),(36,'Macarrão','macarrao.jpg','MASSAS','Dona Benta');
+INSERT INTO `tb_produto` VALUES (39,'Macarrão','macarrao.jpg','MASSAS','Dona Benta');
 /*!40000 ALTER TABLE `tb_produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +181,7 @@ CREATE TABLE `tb_valores_nutricionais` (
   PRIMARY KEY (`id_valores_nutricionais`),
   KEY `produto_id` (`produto_id`),
   CONSTRAINT `tb_valores_nutricionais_ibfk_1` FOREIGN KEY (`produto_id`) REFERENCES `tb_produto` (`id_produto`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,7 +190,7 @@ CREATE TABLE `tb_valores_nutricionais` (
 
 LOCK TABLES `tb_valores_nutricionais` WRITE;
 /*!40000 ALTER TABLE `tb_valores_nutricionais` DISABLE KEYS */;
-INSERT INTO `tb_valores_nutricionais` VALUES (28,28,20,200,25,45,15,30,45,2),(36,36,12,220,12,12,12,12,24,12);
+INSERT INTO `tb_valores_nutricionais` VALUES (39,39,12,12,12,12,12,12,12,12);
 /*!40000 ALTER TABLE `tb_valores_nutricionais` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -203,4 +203,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-11  1:29:55
+-- Dump completed on 2024-12-12  8:44:59

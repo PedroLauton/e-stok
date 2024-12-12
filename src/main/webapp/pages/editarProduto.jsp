@@ -14,6 +14,7 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="../styles/estilo.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link rel="icon" href="../recursos/img/logo-estok.png">
 
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -150,8 +151,8 @@
 
 			<!-- Botão -->
 			<div class="d-grid mt-4">
-				<button type="submit" class="btn btn-form">Salvar
-					Alterações</button>
+				<a class="btn btn-form">Salvar
+					Alterações</a>
 			</div>
 		</form>
 	</main>
