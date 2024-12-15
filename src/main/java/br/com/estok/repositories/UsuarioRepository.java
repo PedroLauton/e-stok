@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import br.com.estok.entities.Usuario;
 import br.com.estok.entities.enums.TipoUsuario;
 import br.com.estok.exception.DbException;
+import br.com.estok.exception.ExecutionUnsuccessfulException;
+import br.com.estok.repositories.connection.DbConexao;
 
 public class UsuarioRepository {
 	
@@ -17,9 +19,12 @@ public class UsuarioRepository {
 		this.conn = conn;
 	}
 
-	public void inserirUsuario(Usuario user) throws DbException {
+	public void inserirUsuario(Usuario user) throws DbException, ExecutionUnsuccessfulException {
+		PreparedStatement pst = null;
+		
 		try {
-			PreparedStatement pst = conn.prepareStatement("INSERT INTO "
+			//Criação da query de inserção.
+			pst = conn.prepareStatement("INSERT INTO "
 					+ "tb_usuario(nome, login, senha, tipo_usuario) "
 					+ "VALUES (?,?,?,?)");
 			
@@ -28,20 +33,32 @@ public class UsuarioRepository {
 			pst.setString(3, user.getSenha());
 			pst.setString(4, user.getTipoUsuario().name());
 			
-			pst.executeUpdate();
+			//Retorno de linhas afetadas no banco de dados.
+			int linhasAfetadas = pst.executeUpdate();
+			
+			//Caso não ocorra alguma atualização no banco de dados, a exceção é lançada.
+			if(linhasAfetadas <= 0) {
+				throw new ExecutionUnsuccessfulException("Erro ao inserir o usuário. Tente Novamente.");
+			}
+			
 		} catch (SQLException e) {
-			throw new DbException("Erro ao inserir o usuário. Verifique as credenciais e conexão com o banco.");
-		} 
+			throw new DbException("Erro relacionado ao banco de dados. Contacte o Administrador do E-stok.");
+		} finally {
+			DbConexao.fecharStatement(pst);
+		}
 	}
 
 	public Usuario autenticacao(Usuario user) throws DbException {
+		PreparedStatement pst = null;
 		try {
-			PreparedStatement pst = conn.prepareStatement("SELECT * FROM "
+			//Criação da query de autenticação.
+			pst = conn.prepareStatement("SELECT * FROM "
 					+ "tb_usuario WHERE login = ? and senha = ?");
 			
 			pst.setString(1, user.getLogin());
 			pst.setString(2, user.getSenha());
 			
+			//Retorna o respectivo usuário.
 			ResultSet rs = pst.executeQuery();
 			Usuario usuarioAutenticado = null;
 			
@@ -52,21 +69,25 @@ public class UsuarioRepository {
 				usuarioAutenticado.setLogin(rs.getString("login"));
 				usuarioAutenticado.setSenha(rs.getString("senha"));
 				usuarioAutenticado.setTipoUsuario(cargoUsuario(rs));
-			}
+			} 
 			
 			return usuarioAutenticado;
 		} catch (SQLException e) {
-			throw new DbException("Erro ao realizar a autenticação. Contacte o Administrador do E-stok.");
+			throw new DbException("Erro relacionado ao banco de dados. Contacte o Administrador do E-stok.");
 		} 
 	}
 	
+	//Tranformação da "String" retornada pelo banco em um tipo enumarado, para o instanciar o cargo do usuário.
 	private TipoUsuario cargoUsuario(ResultSet rs) throws DbException {
 		try {
 			String dado = rs.getString("tipo_usuario");
 			TipoUsuario tipoUsuario = TipoUsuario.valueOf(dado);
 			return tipoUsuario;
 		} catch (SQLException e) {
-			throw new DbException("Erro ao realizar a autenticação (Cargo). Contacte o Administrador do E-stok.");
-		}
+			throw new DbException("Erro relacionado ao banco de dados (Cargo). Contacte o Administrador do E-stok.");
+		} catch (IllegalArgumentException e) {
+	        // Erro ao transformar o valor em enum
+	        throw new IllegalArgumentException("Valor inválido par o cargo do usuário. Verifique as informações no banco de dados.");
+	    }
 	}
 }

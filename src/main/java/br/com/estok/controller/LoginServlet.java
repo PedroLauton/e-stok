@@ -64,6 +64,10 @@ public class LoginServlet extends HttpServlet {
 			 //Caso o usuário informado não seja encontrado. 
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			response.getWriter().write(e.getMessage());
-		} 	
+		} catch (IllegalArgumentException e) {
+			//Caso algum valor ilegal seja encontrado.
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().write(e.getMessage());
+	    }	
     }
 }

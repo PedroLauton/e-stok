@@ -13,10 +13,11 @@ public class LoginService {
 	
 	public Usuario autenticacaoUsuario(LoginDTO loginDTO) throws DbException, AuthenticationException {
 		//Instancia um usuário para autenticação.
-		Usuario usuarioAutenticado = usuarioRepository.autenticacao(
-				new Usuario(loginDTO.getLogin(), 
-				loginDTO.getSenha()));
+		Usuario usuarioAutenticado = usuarioRepository.autenticacao(new Usuario(loginDTO.getLogin(), loginDTO.getSenha()));
 		
+		/*Se o usuário retornado for diferente de nulo, não existe correspondêcia 
+		 *desse usuário no banco de dados, então a exceção é lançada.
+		*/
 		if(usuarioAutenticado == null) {
 			throw new AuthenticationException("Usuário ou senha incorretos. Tente novamente.");
 		} else {
