@@ -1,21 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E-Stok</title>
-
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link rel="stylesheet" href="styles/estilo.css">
-<link
-	href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
-	rel="stylesheet">
-<link rel="icon" href="recursos/img/logo-estok.png">
-
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/estilo.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="icon" href="recursos/img/logo-estok.png">
+	<title>E-Stok</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -30,10 +23,8 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item me-3"><a class="nav-link" href="#sobre">Sobre</a></li>
-					<li class="nav-item me-3"><a class="nav-link"
-						href="#funcionalidades">Funcionalidades</a></li>
-					<li class="nav-item me-3 "><a class="btn btn-outline-success"
-						href="login">Acessar</a></li>
+					<li class="nav-item me-3"><a class="nav-link" href="#funcionalidades">Funcionalidades</a></li>
+					<li class="nav-item me-3 "><a class="btn btn-outline-success" href="login">Acessar</a></li>
 				</ul>
 			</div>
 		</div>

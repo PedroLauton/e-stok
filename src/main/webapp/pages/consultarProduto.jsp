@@ -39,18 +39,8 @@
 	</nav>
 
 	<!-- Lista de Produtos -->
-	<main class="container py-5 flex-grow-1">
+	<main class="container py-5 flex-grow-1 text-center">
 		<h2 class="mb-4 text-center">Consulta de Produtos</h2>
-		<!-- Barra de Pesquisa -->
-		<div class="row mb-4">
-			<div class="col-12 col-md-6 mx-auto">
-				<div class="input-group">
-					<input type="text" class="form-control"
-						placeholder="Pesquisar produto" aria-label="Pesquisar lote">
-					<button class="btn btn-form" type="button">Pesquisar</button>
-				</div>
-			</div>
-		</div>
 		<div class="table-responsive">
 			<table class="table table-bordered table-striped tabela">
 				<thead class="table-light">

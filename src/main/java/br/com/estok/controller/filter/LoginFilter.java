@@ -26,15 +26,18 @@ public class LoginFilter extends HttpFilter implements Filter {
 	public void destroy() {
 	}
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 
+		//Captura o a URL que o usuário solicitou.
 		String uri = httpRequest.getRequestURI();
-
+		//Captura a sessão do usuário.
 		HttpSession sessao = httpRequest.getSession(false);
-
+		
+		/*Caso ele esteja logado, ou deseje acessar o 'index' ou logar no sistema, o filter permitirá a passagem.
+		 *Caso o usuário tente acessar ao pelo RUL sem estar logado, o filter redireciona para o 'index'.
+		*/
 		if ((sessao != null && sessao.getAttribute("Usuario") != null) || uri.endsWith("index.jsp")
 				|| uri.endsWith("login.jsp") || uri.contains("/login")) {
 			chain.doFilter(request, response);

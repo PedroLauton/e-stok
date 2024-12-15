@@ -43,9 +43,10 @@
 
 	<main class="container py-5 flex-grow-1">
 		<h2 class="mb-4 text-center">Editar Produto</h2>
-		<form action="editarProdutoServlet" method="POST">
-			
-
+		<div class="text-center">
+			<div id="alerta" class="alert d-none d-inline-block mx-auto"></div>
+		</div>
+		<form id="formProduto" method="POST">
 			<!-- Nome e Foto -->
 			<div class="row mb-3">
 				<div class="col-md">
@@ -59,7 +60,6 @@
 						value="" required>
 				</div>
 			</div>
-
 			<!-- Categoria e Fabricante -->
 			<div class="row mb-3">
 				<div class="col-md-6">
@@ -87,7 +87,6 @@
 						<option value="BEBIDAS">Bebidas</option>
 						<option value="CONGELADOS">Congelados</option>
 						<option value="NATURAIS">Naturais</option>
-
 					</select>
 				</div>
 				<div class="col-md-6">
@@ -96,7 +95,6 @@
 						value="" required>
 				</div>
 			</div>
-
 			<!-- Valores Nutricionais -->
 			<div class="row mb-3">
 				<div class="col-md-4">
@@ -116,7 +114,6 @@
 						name="proteinas" value="">
 				</div>
 			</div>
-
 			<div class="row mb-3">
 				<div class="col-md-4">
 					<label for="gordurasTotal" class="form-label">Gorduras
@@ -135,7 +132,6 @@
 						name="gordurasSaturadas" value="">
 				</div>
 			</div>
-
 			<div class="row mb-3">
 				<div class="col-md-6">
 					<label for="vitaminas" class="form-label">Vitaminas (mg)</label> <input
@@ -148,11 +144,10 @@
 						name="porcao" value="">
 				</div>
 			</div>
-
 			<!-- Botão -->
 			<div class="d-grid mt-4">
-				<a class="btn btn-form">Salvar
-					Alterações</a>
+				<button type"submit" class="btn btn-form">Salvar
+					Alterações</button>
 			</div>
 		</form>
 	</main>
@@ -163,7 +158,7 @@
 	
 	    if (idProduto) {
 	        $.ajax({
-	            url: "../produto?id=" + idProduto,
+	            url: "../produto/editar?id=" + idProduto,
 	            type: 'GET',
 	            dataType: 'json',
 	            success: function(data) {
@@ -184,11 +179,57 @@
 	            },
 	            error: function(xhr, status, error) {
 	                console.error('Erro ao buscar os dados do produto:', error);
-	                alert('Não foi possível carregar os dados do produto. Tente novamente mais tarde.');
+	                
 	            }
 	        });
+	        
+	        $("#formProduto").on("submit", function (event) {
+		        event.preventDefault(); // Impede o comportamento padrão de envio do formulário
+
+		        const data = $(this).serializeArray(); // Serializa os dados do formulário
+		        const jsonData = {};
+
+		        // Converte os dados serializados em um objeto JSON
+		        $.each(data, function (i, field) {
+		            jsonData[field.name] = field.value;
+		        });
+
+		        // Realiza a requisição AJAX para editar o produto
+		        $.ajax({
+		            url: "../produto/editar?id=" + idProduto, // Endpoint para edição de produto (mantenha ou ajuste conforme necessário)
+		            type: "PUT", // Método HTTP para edição
+		            contentType: "application/json", // Especifica que o conteúdo enviado será JSON
+		            data: JSON.stringify(jsonData), // Converte o objeto JSON em string
+		            success: function (message) {
+		                const alerta = $("#alerta");
+
+		                alerta.removeClass("d-none alert-danger").addClass("alert-success"); // Exibe alerta de sucesso
+		                alerta.text(message);
+
+		                // Rola a página para o topo
+		                $("html, body").animate({ scrollTop: 0 }, "fast");
+
+		                // Redireciona após 3 segundos
+		                setTimeout(function () {
+		                    window.location.href = "consultarProduto.jsp";
+		                }, 3000);
+		            },
+		            error: function (xhr) {
+		                const alerta = $("#alerta");
+
+		                alerta.removeClass("d-none alert-success").addClass("alert-danger"); // Exibe alerta de erro
+		                alerta.text(xhr.responseText || "Erro ao editar o produto. Tente novamente.");
+
+		                // Rola a página para o topo
+		                $("html, body").animate({ scrollTop: 0 }, "fast");
+		            },
+		        });
+		    });
 	    } else {
-	        alert('ID do produto não encontrado na URL.');
+	        alert('ID do produto não encontrado. Você redirecionado para consulta de produtos segundo.');
+	        setTimeout(function () {
+                window.location.href = "consultarProduto.jsp";
+            });
 	    }
 	});
 	</script>

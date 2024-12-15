@@ -19,8 +19,10 @@ public class LogoutServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Captura a sessão do usuário
 		HttpSession session = request.getSession(false);
 
+		//Se a sessão for diferente de nulo, destrói e redireciona para o index.
 		if(session != null) {
 			session.invalidate();
 			response.sendRedirect("index.jsp");
