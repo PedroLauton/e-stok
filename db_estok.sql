@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `db_estok` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `db_estok`;
 -- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: db_estok
@@ -117,7 +119,7 @@ CREATE TABLE `tb_produto` (
   `categoria_produto` varchar(20) NOT NULL,
   `fabricante` varchar(200) NOT NULL,
   PRIMARY KEY (`id_produto`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +128,7 @@ CREATE TABLE `tb_produto` (
 
 LOCK TABLES `tb_produto` WRITE;
 /*!40000 ALTER TABLE `tb_produto` DISABLE KEYS */;
-INSERT INTO `tb_produto` VALUES (39,'Macarrão','macarrao.jpg','MASSAS','Dona Benta');
+INSERT INTO `tb_produto` VALUES (50,'Arroz ',NULL,'CEREAIS','Dona Benta'),(51,'Feijão',NULL,'CEREAIS','Feijão+'),(52,'Macarrão',NULL,'MASSAS','Macarrão+'),(53,'Uva',NULL,'FRUTAS','Uva+'),(54,'Sardinha',NULL,'PESCADOS','Peixe+'),(55,'Café',NULL,'FARINHA','Café+'),(56,'Laranja',NULL,'FRUTAS','Laranja+'),(57,'Banana',NULL,'FRUTAS','Banana+'),(58,'Batata',NULL,'LEGUMINOSAS','Batata+');
 /*!40000 ALTER TABLE `tb_produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +183,7 @@ CREATE TABLE `tb_valores_nutricionais` (
   PRIMARY KEY (`id_valores_nutricionais`),
   KEY `produto_id` (`produto_id`),
   CONSTRAINT `tb_valores_nutricionais_ibfk_1` FOREIGN KEY (`produto_id`) REFERENCES `tb_produto` (`id_produto`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,7 +192,7 @@ CREATE TABLE `tb_valores_nutricionais` (
 
 LOCK TABLES `tb_valores_nutricionais` WRITE;
 /*!40000 ALTER TABLE `tb_valores_nutricionais` DISABLE KEYS */;
-INSERT INTO `tb_valores_nutricionais` VALUES (39,39,12,12,12,12,12,12,12,12);
+INSERT INTO `tb_valores_nutricionais` VALUES (50,50,100,200,20,45,15,15,30,2),(51,51,230,200,23,54,6,6,12,3),(52,52,433,200,345,234,1,1,2,3),(53,53,23,100,13,32,6,6,12,45),(54,54,456,200,34,35,100,100,200,12),(55,55,244,200,23,32,5,5,10,45),(56,56,35,200,34,43,1,2,3,355),(57,57,32,200,23,23,1,2,3,45),(58,58,34,200,56,32,4,3,7,56);
 /*!40000 ALTER TABLE `tb_valores_nutricionais` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -203,4 +205,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-12  8:44:59
+-- Dump completed on 2024-12-15 15:37:01

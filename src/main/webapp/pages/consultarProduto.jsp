@@ -23,7 +23,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item me-3"><a class="nav-link" href="menuComercial.jsp">Home</a></li>
-                    <li class="nav-item me-3"><a class="nav-link" href="../index.jsp">Página inical</a></li>
+                    <li class="nav-item me-3"><a class="nav-link" href="cadastrarProduto.jsp">Cadastrar Produto</a></li>
                     <li class="nav-item me-3 "><a class="btn btn-outline-danger" href="../logout">Sair</a></li>
                 </ul>
             </div>
