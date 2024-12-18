@@ -11,6 +11,8 @@ O E-stok é uma plataforma para cadastro de produtos e lotes, com geração de u
 O projeto foi desenvolvido utilizando as seguintes tecnologias e ferramentas:
 
 - **Java** como linguagem principal;
+- **Bootstrap** como framework Front-end;
+- **jQuery** para realizar requisições HTTP;
 - **Eclipse EE** como IDE principal;
 - **Tomcar Server 10.1** como servidor para aplicação;
 - **MySql** como banco de dados.
