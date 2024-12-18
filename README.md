@@ -29,6 +29,12 @@ https://tomcat.apache.org/download-10.cgi
 
 O E-stok é uma plataforma para cadastro de produtos e lotes, com geração de um QR Code que contém as principais informações nutricionais e a data de validade dos produtos. A intenção é gerar um QR Code que pode ser colado nos produtos, permitindo que o cliente, ao escaneá-lo, salve o produto em sua despensa online. Nesse primeiro momento, será desenvolvida a parte web, responsável pelo cadastro e geração do respectivo QR Code. Posteriormente, será desenvolvido o aplicativo mobile, que incluirá a despensa online e o cadastro automático de produtos com base no QR Code.
 
+
+## Vídeo (Fase inicial - CRUD do Produto)
+
+https://github.com/user-attachments/assets/04451c3a-f38a-4cdf-8d5f-370c609c7da4
+
+
 ## Imagens prévias
 
 ![image](https://github.com/user-attachments/assets/cecce9ed-5f35-433f-81ad-9ee7520d9a8a)
